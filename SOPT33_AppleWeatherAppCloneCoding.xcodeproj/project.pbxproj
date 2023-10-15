@@ -12,6 +12,12 @@
 		F46C22902ADC5C2500AA798D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C228F2ADC5C2500AA798D /* ViewController.swift */; };
 		F46C22952ADC5C2900AA798D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46C22942ADC5C2900AA798D /* Assets.xcassets */; };
 		F46C22982ADC5C2900AA798D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46C22962ADC5C2900AA798D /* LaunchScreen.storyboard */; };
+		F46C22A92ADC6BBD00AA798D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F46C22A82ADC6BBD00AA798D /* SnapKit */; };
+		F46C22AB2ADC6BBD00AA798D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F46C22AA2ADC6BBD00AA798D /* SnapKit-Dynamic */; };
+		F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22AC2ADC6D8800AA798D /* UIFont+.swift */; };
+		F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */; };
+		F46C22B22ADC71DD00AA798D /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */; };
+		F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,10 @@
 		F46C22942ADC5C2900AA798D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F46C22972ADC5C2900AA798D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F46C22992ADC5C2900AA798D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F46C22AC2ADC6D8800AA798D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46C22A92ADC6BBD00AA798D /* SnapKit in Frameworks */,
+				F46C22AB2ADC6BBD00AA798D /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +66,8 @@
 		F46C228A2ADC5C2500AA798D /* SOPT33_AppleWeatherAppCloneCoding */ = {
 			isa = PBXGroup;
 			children = (
+				F46C22A62ADC676900AA798D /* Font */,
+				F46C229F2ADC660200AA798D /* Extensions */,
 				F46C228B2ADC5C2500AA798D /* AppDelegate.swift */,
 				F46C228D2ADC5C2500AA798D /* SceneDelegate.swift */,
 				F46C228F2ADC5C2500AA798D /* ViewController.swift */,
@@ -62,6 +76,24 @@
 				F46C22992ADC5C2900AA798D /* Info.plist */,
 			);
 			path = SOPT33_AppleWeatherAppCloneCoding;
+			sourceTree = "<group>";
+		};
+		F46C229F2ADC660200AA798D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F46C22AC2ADC6D8800AA798D /* UIFont+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F46C22A62ADC676900AA798D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */,
+				F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */,
+				F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +112,10 @@
 			dependencies = (
 			);
 			name = SOPT33_AppleWeatherAppCloneCoding;
+			packageProductDependencies = (
+				F46C22A82ADC6BBD00AA798D /* SnapKit */,
+				F46C22AA2ADC6BBD00AA798D /* SnapKit-Dynamic */,
+			);
 			productName = SOPT33_AppleWeatherAppCloneCoding;
 			productReference = F46C22882ADC5C2500AA798D /* SOPT33_AppleWeatherAppCloneCoding.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +144,9 @@
 				Base,
 			);
 			mainGroup = F46C227F2ADC5C2500AA798D;
+			packageReferences = (
+				F46C22A72ADC6BBD00AA798D /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = F46C22892ADC5C2500AA798D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -122,7 +161,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */,
 				F46C22982ADC5C2900AA798D /* LaunchScreen.storyboard in Resources */,
+				F46C22B22ADC71DD00AA798D /* SF-Pro-Text-Bold.otf in Resources */,
+				F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */,
 				F46C22952ADC5C2900AA798D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */,
 				F46C22902ADC5C2500AA798D /* ViewController.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
 				F46C228E2ADC5C2500AA798D /* SceneDelegate.swift in Sources */,
@@ -349,6 +392,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F46C22A72ADC6BBD00AA798D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F46C22A82ADC6BBD00AA798D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F46C22A72ADC6BBD00AA798D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		F46C22AA2ADC6BBD00AA798D /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F46C22A72ADC6BBD00AA798D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F46C22802ADC5C2500AA798D /* Project object */;
 }

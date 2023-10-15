@@ -6,14 +6,29 @@
 //
 
 import UIKit
+import SnapKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+
+    private let labelText: UILabel = {
+        let label = UILabel()
+        label.font = .sfPro(size: 30, weight: .bold)
+        label.textColor = .black
+        label.text = "테스트"
+        return label
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .blue
+        view.addSubview(labelText)
+        
+        labelText.snp.makeConstraints{
+            $0.top.leading.equalToSuperview().inset(100)
+        }
+        
     }
-
-
 }
+
 
