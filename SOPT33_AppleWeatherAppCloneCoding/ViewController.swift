@@ -10,9 +10,12 @@ import SnapKit
 
 final class ViewController: UIViewController {
 
-    private let label = UILabel()
+    private let imageTest: UIImageView = {
+        let imageTest = UIImageView(image: ImageLiterals.detailView.backgroundImage)
+        return imageTest
+    }()
     
-    private let labelText: UILabel = {
+    private let labelTest: UILabel = {
         let label = UILabel()
         label.font = .sfPro(size: 30, weight: .bold)
         label.textColor = .black
@@ -24,10 +27,10 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
-        view.addSubview(labelText)
+        view.addSubview(imageTest)
         
-        labelText.snp.makeConstraints{
-            $0.top.leading.equalToSuperview().inset(100)
+        imageTest.snp.makeConstraints{
+            $0.edges.equalToSuperview()
         }
     
     }
