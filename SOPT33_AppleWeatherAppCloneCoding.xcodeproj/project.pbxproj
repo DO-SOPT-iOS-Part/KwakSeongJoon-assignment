@@ -18,6 +18,7 @@
 		F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */; };
 		F46C22B22ADC71DD00AA798D /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */; };
 		F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */; };
+		F46C22B52ADC80C300AA798D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22B42ADC80C300AA798D /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		F46C22B42ADC80C300AA798D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				F46C22AC2ADC6D8800AA798D /* UIFont+.swift */,
+				F46C22B42ADC80C300AA798D /* UIView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				F46C22902ADC5C2500AA798D /* ViewController.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
 				F46C228E2ADC5C2500AA798D /* SceneDelegate.swift in Sources */,
+				F46C22B52ADC80C300AA798D /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
