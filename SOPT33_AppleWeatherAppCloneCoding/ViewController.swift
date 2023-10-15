@@ -10,6 +10,8 @@ import SnapKit
 
 final class ViewController: UIViewController {
 
+    private let label = UILabel()
+    
     private let labelText: UILabel = {
         let label = UILabel()
         label.font = .sfPro(size: 30, weight: .bold)
@@ -27,7 +29,7 @@ final class ViewController: UIViewController {
         labelText.snp.makeConstraints{
             $0.top.leading.equalToSuperview().inset(100)
         }
-        
+    
     }
 }
 
