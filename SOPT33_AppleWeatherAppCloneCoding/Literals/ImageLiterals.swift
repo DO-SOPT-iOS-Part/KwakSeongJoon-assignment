@@ -15,7 +15,7 @@ enum ImageLiterals {
     }
     
     enum detailView {
-        static var backgroundImage: UIImage { .load(named: "backgroundImage") }
+        static var backgroundImage: UIImage { .load(named: "detailBackgroundImage") }
         static var cloudyImage: UIImage { .load(named: "cloudyImage") }
         static var GPSImage: UIImage { .load(named: "GPSImage") }
         static var locationDotImage: UIImage { .load(named: "locationDotImage") }
