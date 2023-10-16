@@ -20,6 +20,10 @@ extension UIFont {
             weightString = "Medium"
         case .regular:
             weightString = "Regular"
+        case .thin:
+            weightString = "Thin"
+        case .light:
+            weightString = "Light"
         default:
             weightString = "Medium"
         }

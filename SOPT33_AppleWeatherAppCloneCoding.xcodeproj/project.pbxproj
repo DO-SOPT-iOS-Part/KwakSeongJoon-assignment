@@ -16,11 +16,13 @@
 		F46C22AB2ADC6BBD00AA798D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F46C22AA2ADC6BBD00AA798D /* SnapKit-Dynamic */; };
 		F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22AC2ADC6D8800AA798D /* UIFont+.swift */; };
 		F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */; };
-		F46C22B22ADC71DD00AA798D /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */; };
 		F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */; };
 		F46C22B52ADC80C300AA798D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22B42ADC80C300AA798D /* UIView+.swift */; };
 		F46C22B82ADC831C00AA798D /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22B72ADC831C00AA798D /* ImageLiterals.swift */; };
 		F46C22BA2ADC838F00AA798D /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22B92ADC838F00AA798D /* UIImage+.swift */; };
+		F4F419C72ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4F419C52ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf */; };
+		F4F419C82ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4F419C62ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf */; };
+		F4F419CA2ADD2B7400AB8526 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4F419C92ADD2B7400AB8526 /* SF-Pro-Text-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +35,13 @@
 		F46C22992ADC5C2900AA798D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46C22AC2ADC6D8800AA798D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
-		F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		F46C22B42ADC80C300AA798D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		F46C22B72ADC831C00AA798D /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		F46C22B92ADC838F00AA798D /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		F4F419C52ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Bold.otf"; path = "../../../../SFFont/SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		F4F419C62ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
+		F4F419C92ADD2B7400AB8526 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +102,10 @@
 		F46C22A62ADC676900AA798D /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				F46C22AF2ADC71DD00AA798D /* SF-Pro-Text-Bold.otf */,
+				F4F419C52ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf */,
+				F4F419C62ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf */,
 				F46C22B02ADC71DD00AA798D /* SF-Pro-Text-Medium.otf */,
+				F4F419C92ADD2B7400AB8526 /* SF-Pro-Text-Light.otf */,
 				F46C22AE2ADC71DC00AA798D /* SF-Pro-Text-Regular.otf */,
 			);
 			path = Font;
@@ -180,8 +186,10 @@
 			files = (
 				F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */,
 				F46C22982ADC5C2900AA798D /* LaunchScreen.storyboard in Resources */,
-				F46C22B22ADC71DD00AA798D /* SF-Pro-Text-Bold.otf in Resources */,
+				F4F419C72ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf in Resources */,
 				F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */,
+				F4F419C82ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf in Resources */,
+				F4F419CA2ADD2B7400AB8526 /* SF-Pro-Text-Light.otf in Resources */,
 				F46C22952ADC5C2900AA798D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
