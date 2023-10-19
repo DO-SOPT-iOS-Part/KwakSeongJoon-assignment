@@ -28,7 +28,7 @@ extension UIFont {
             weightString = "Medium"
         }
         
-        return UIFont(name: "\(familyName)-\(weightString)", size: fontSize)!
+        return UIFont(name: "\(familyName)-\(weightString)", size: fontSize)! 
     }
 }
 

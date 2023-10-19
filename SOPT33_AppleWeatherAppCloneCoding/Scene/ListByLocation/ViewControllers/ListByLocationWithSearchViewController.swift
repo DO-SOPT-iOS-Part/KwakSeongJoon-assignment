@@ -19,48 +19,53 @@ final class ListByLocationWithSearchViewController: UIViewController {
     private lazy var rightBarButtonItem: UIBarButtonItem = {
         var button = UIBarButtonItem()
         button.isHidden = false
-//        button.setBackgroundImage(ImageLiterals.MainView.navigationSettingImage, for: .normal, barMetrics: .default)
         button.image = ImageLiterals.MainView.navigationSettingImage
         button.tintColor = .white
         button.customView?.backgroundColor = .white
         return button
     }()
-
     
-    private lazy var seoulButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .red
-        return button
+    private let locationButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
-    private lazy var daeguButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .blue
-        return button
-    }()
+    private lazy var myLocationButton = LocationButton( target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private lazy var incheonButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .green
-        return button
-    }()
+    private lazy var mokdongButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private let locationButtonStackView = UIStackView()
+    private lazy var incheonButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    
+    private lazy var cheonanButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        locationListContentView.backgroundColor = .black
+        
+        setStyle()
         setLaytout()
         setSearchController()
+        setWeatherData()
+        
+    }
+    
+    private func setStyle() {
+        view.backgroundColor = .black
+        locationListContentView.backgroundColor = .black
     }
     
     private func setLaytout() {
         self.view.addSubviews(locationListScrollView)
         
         locationListScrollView.addSubviews(locationListContentView)
+        
+        locationListContentView.addSubviews(locationButtonStackView)
+        
+        locationButtonStackView.addArrangedSubviews(myLocationButton, mokdongButton, incheonButton, cheonanButton)
         
         locationListScrollView.snp.makeConstraints{
             $0.edges.equalToSuperview()
@@ -72,26 +77,48 @@ final class ListByLocationWithSearchViewController: UIViewController {
             $0.height.equalTo(locationListScrollView)
         }
         
+        locationButtonStackView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            
+        }
+        
     }
     
-    private func setSearchController() {
+    @objc
+    private func pushToLocationDetailWeatherView() {
+        let nextVC = LocationDetailWeatherViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
 
+
+extension ListByLocationWithSearchViewController {
+    
+    private func setSearchController() {
+        
         locationSearchController.searchBar.placeholder = "도시 또는 공항 검색"
         locationSearchController.hidesNavigationBarDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
-
+        
         self.navigationItem.title = "날씨"
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        // Large title로 하고싶을 때 추가
+        // Large title로 하고 싶을 때 추가
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         //Large title 색 변경
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-
+    }
+    
+    private func setWeatherData() {
+        myLocationButton.weatherData = WeatherDataStruct.dummy()[0].locationWeatherData[0]
+        mokdongButton.weatherData = WeatherDataStruct.dummy()[1].locationWeatherData[0]
+        incheonButton.weatherData = WeatherDataStruct.dummy()[2].locationWeatherData[0]
+        cheonanButton.weatherData = WeatherDataStruct.dummy()[3].locationWeatherData[0]
     }
     
 }

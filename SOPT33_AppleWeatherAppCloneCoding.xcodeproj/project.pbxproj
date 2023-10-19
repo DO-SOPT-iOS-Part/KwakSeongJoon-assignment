@@ -23,6 +23,10 @@
 		F4F419C82ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4F419C62ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf */; };
 		F4F419CA2ADD2B7400AB8526 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4F419C92ADD2B7400AB8526 /* SF-Pro-Text-Light.otf */; };
 		F4F419CC2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F419CB2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift */; };
+		F4F419D12AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F419D02AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift */; };
+		F4F419DB2AE110D200AB8526 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F419DA2AE110D200AB8526 /* UIStackView+.swift */; };
+		F4F419E02AE1162400AB8526 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F419DF2AE1162400AB8526 /* LocationButton.swift */; };
+		F4F419E22AE11A2400AB8526 /* LocationDetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F419E12AE11A2400AB8526 /* LocationDetailWeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		F4F419C62ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
 		F4F419C92ADD2B7400AB8526 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		F4F419CB2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByLocationWithSearchViewController.swift; sourceTree = "<group>"; };
+		F4F419D02AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListByLocationInfoModel.swift; sourceTree = "<group>"; };
+		F4F419DA2AE110D200AB8526 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		F4F419DF2AE1162400AB8526 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
+		F4F419E12AE11A2400AB8526 /* LocationDetailWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailWeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +84,13 @@
 		F46C228A2ADC5C2500AA798D /* SOPT33_AppleWeatherAppCloneCoding */ = {
 			isa = PBXGroup;
 			children = (
+				F4F419DC2AE1158000AB8526 /* UIComponents */,
+				F4F419CF2AE10DD600AB8526 /* Scene */,
 				F46C22B62ADC831000AA798D /* Literals */,
 				F46C22A62ADC676900AA798D /* Font */,
 				F46C229F2ADC660200AA798D /* Extensions */,
 				F46C228B2ADC5C2500AA798D /* AppDelegate.swift */,
 				F46C228D2ADC5C2500AA798D /* SceneDelegate.swift */,
-				F4F419CB2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift */,
 				F46C22942ADC5C2900AA798D /* Assets.xcassets */,
 				F46C22962ADC5C2900AA798D /* LaunchScreen.storyboard */,
 				F46C22992ADC5C2900AA798D /* Info.plist */,
@@ -95,6 +104,7 @@
 				F46C22AC2ADC6D8800AA798D /* UIFont+.swift */,
 				F46C22B42ADC80C300AA798D /* UIView+.swift */,
 				F46C22B92ADC838F00AA798D /* UIImage+.swift */,
+				F4F419DA2AE110D200AB8526 /* UIStackView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,6 +127,80 @@
 				F46C22B72ADC831C00AA798D /* ImageLiterals.swift */,
 			);
 			path = Literals;
+			sourceTree = "<group>";
+		};
+		F4F419CF2AE10DD600AB8526 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419D52AE10EAE00AB8526 /* LocationWeatherInfo */,
+				F4F419D42AE10E9D00AB8526 /* ListByLocation */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		F4F419D42AE10E9D00AB8526 /* ListByLocation */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419E32AE120E200AB8526 /* Views */,
+				F4F419D72AE10EDF00AB8526 /* Model */,
+				F4F419D62AE10EC100AB8526 /* ViewControllers */,
+			);
+			path = ListByLocation;
+			sourceTree = "<group>";
+		};
+		F4F419D52AE10EAE00AB8526 /* LocationWeatherInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419D82AE10EE400AB8526 /* Model */,
+				F4F419D92AE10EE800AB8526 /* ViewControllers */,
+			);
+			path = LocationWeatherInfo;
+			sourceTree = "<group>";
+		};
+		F4F419D62AE10EC100AB8526 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419CB2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F4F419D72AE10EDF00AB8526 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419D02AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4F419D82AE10EE400AB8526 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4F419D92AE10EE800AB8526 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419E12AE11A2400AB8526 /* LocationDetailWeatherViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F4F419DC2AE1158000AB8526 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F4F419DF2AE1162400AB8526 /* LocationButton.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		F4F419E32AE120E200AB8526 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,12 +285,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F419E02AE1162400AB8526 /* LocationButton.swift in Sources */,
 				F4F419CC2ADD343000AB8526 /* ListByLocationWithSearchViewController.swift in Sources */,
 				F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */,
+				F4F419E22AE11A2400AB8526 /* LocationDetailWeatherViewController.swift in Sources */,
 				F46C22BA2ADC838F00AA798D /* UIImage+.swift in Sources */,
 				F46C22B82ADC831C00AA798D /* ImageLiterals.swift in Sources */,
+				F4F419D12AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
 				F46C228E2ADC5C2500AA798D /* SceneDelegate.swift in Sources */,
+				F4F419DB2AE110D200AB8526 /* UIStackView+.swift in Sources */,
 				F46C22B52ADC80C300AA798D /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
