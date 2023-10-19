@@ -16,20 +16,31 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     private let locationListContentView = UIView()
     
+    private lazy var rightBarButtonItem: UIBarButtonItem = {
+        var button = UIBarButtonItem()
+        button.isHidden = false
+//        button.setBackgroundImage(ImageLiterals.MainView.navigationSettingImage, for: .normal, barMetrics: .default)
+        button.image = ImageLiterals.MainView.navigationSettingImage
+        button.tintColor = .white
+        button.customView?.backgroundColor = .white
+        return button
+    }()
+
+    
     private lazy var seoulButton: UIButton = {
-        let button = UIButton()
+        var button = UIButton()
         button.backgroundColor = .red
         return button
     }()
     
     private lazy var daeguButton: UIButton = {
-        let button = UIButton()
+        var button = UIButton()
         button.backgroundColor = .blue
         return button
     }()
     
     private lazy var incheonButton: UIButton = {
-        let button = UIButton()
+        var button = UIButton()
         button.backgroundColor = .green
         return button
     }()
@@ -72,8 +83,12 @@ final class ListByLocationWithSearchViewController: UIViewController {
 
         self.navigationItem.title = "날씨"
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true // Large title로 하고싶을 때 추가
-
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        // Large title로 하고싶을 때 추가
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        //Large title 색 변경
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
 
