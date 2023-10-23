@@ -16,7 +16,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     private let locationListContentView = UIView()
     
-    private lazy var rightBarButtonItem: UIBarButtonItem = {
+    private lazy var optionButton: UIBarButtonItem = {
         var button = UIBarButtonItem()
         button.isHidden = false
         button.image = ImageLiterals.MainView.navigationSettingImage
@@ -40,8 +40,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
     private lazy var incheonButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
     private lazy var cheonanButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,9 +101,13 @@ extension ListByLocationWithSearchViewController {
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
         
+        //검색창 검색 글씨 색깔 변경
+        let textFieldInsideSearchBar = locationSearchController.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = .white
+        
         self.navigationItem.title = "날씨"
         
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationItem.rightBarButtonItem = optionButton
         
         // Large title로 하고 싶을 때 추가
         self.navigationController?.navigationBar.prefersLargeTitles = true
