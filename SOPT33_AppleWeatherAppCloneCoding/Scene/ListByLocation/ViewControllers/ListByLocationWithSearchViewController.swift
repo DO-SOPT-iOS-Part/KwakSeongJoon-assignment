@@ -9,10 +9,16 @@ import UIKit
 import SnapKit
 
 final class ListByLocationWithSearchViewController: UIViewController {
+        
+    private var searchFilteredWeatherData: [LocationWeatherDataStruct] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
     
-    private let locationListScrollView = UIScrollView()
+    private let locationListScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
     
     private let locationListContentView = UIView()
     
@@ -72,7 +78,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
         locationListContentView.snp.makeConstraints{
             $0.edges.equalTo(locationListScrollView.contentLayoutGuide)
             $0.width.equalTo(locationListScrollView.frameLayoutGuide)
-            $0.height.equalTo(locationListScrollView)
         }
         
         locationButtonStackView.snp.makeConstraints {
@@ -98,8 +103,12 @@ extension ListByLocationWithSearchViewController {
         
         locationSearchController.searchBar.placeholder = "도시 또는 공항 검색"
         locationSearchController.hidesNavigationBarDuringPresentation = false
+        locationSearchController.searchResultsUpdater = self
+        locationSearchController.obscuresBackgroundDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
+        
+        
         
         //검색창 검색 글씨 색깔 변경
         let textFieldInsideSearchBar = locationSearchController.searchBar.value(forKey: "searchField") as? UITextField
@@ -121,6 +130,19 @@ extension ListByLocationWithSearchViewController {
         mokdongButton.weatherData = WeatherDataStruct.dummy()[1].locationWeatherData[0]
         incheonButton.weatherData = WeatherDataStruct.dummy()[2].locationWeatherData[0]
         cheonanButton.weatherData = WeatherDataStruct.dummy()[3].locationWeatherData[0]
+    }
+    
+}
+
+extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let enteringText = searchController.searchBar.text else { return }
+        print(enteringText)
+        
+        
+        
+        
     }
     
 }
