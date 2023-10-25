@@ -57,28 +57,30 @@ final class LocationButton: UIButton {
         static let buttonHeight: CGFloat = 117 /  335
     }
     
-    var weatherData: LocationWeatherDataStruct? {
+    var index: Int = 0
+    
+    var weatherData: WeatherDataStruct? {
         didSet {
-            if let data = weatherData {
-                locationLabel.text = data.locationName
-                timeLabel.text = data.locationTimeOrMyLocation
-                weatherInfoLabel.text = data.locationWeather
-                temperatureLabel.text = "\(data.locationTemperature)°"
-                highestTempLabel.text = "최고: \(data.locationHighestTemp)°"
-                lowestTempLabel.text = "최저: \(data.locationLowestTemp)°"
-            }
+            guard let data = weatherData else { return }
+            locationLabel.text = data.locationName
+            timeLabel.text = data.locationTimeOrMyLocation
+            weatherInfoLabel.text = data.locationWeather
+            temperatureLabel.text = "\(data.locationTemperature)°"
+            highestTempLabel.text = "최고: \(data.locationHighestTemp)°"
+            lowestTempLabel.text = "최저: \(data.locationLowestTemp)°"
+            
         }
     }
     
     init(
+        idx: Int,
         target: Any,
         addTarget: Selector) {
             super.init(frame: .zero)
             self.addTarget(target, action: addTarget, for: .touchUpInside)
             self.setBackgroundImage(ImageLiterals.MainView.mainListBackGroundImage, for: .normal)
-            
+            self.index = idx
             setStyle()
-            
             
             
         }
@@ -86,10 +88,7 @@ final class LocationButton: UIButton {
     
     private func setStyle() {
         
-        self.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width - 40)
-            $0.height.equalTo(self.snp.width).multipliedBy(Size.buttonHeight)
-        }
+        
         
         self.addSubviews(locationLabel, timeLabel, weatherInfoLabel, temperatureLabel, highestTempLabel, lowestTempLabel)
         
@@ -100,13 +99,14 @@ final class LocationButton: UIButton {
         }
         
         timeLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().inset(44)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(locationLabel.snp.bottom).offset(2)
+            $0.leading.equalTo(locationLabel.snp.leading)
         }
         
         weatherInfoLabel.snp.makeConstraints {
+            $0.top.equalTo(timeLabel.snp.bottom).offset(23)
+            $0.leading.equalTo(timeLabel.snp.leading)
             $0.bottom.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview().inset(16)
         }
         
         temperatureLabel.snp.makeConstraints{
@@ -115,12 +115,12 @@ final class LocationButton: UIButton {
         }
         
         highestTempLabel.snp.makeConstraints{
-            $0.bottom.equalToSuperview().inset(10)
+            $0.top.equalTo(temperatureLabel.snp.bottom).offset(23)
             $0.trailing.equalToSuperview().inset(79)
         }
         
         lowestTempLabel.snp.makeConstraints{
-            $0.bottom.equalToSuperview().inset(10)
+            $0.top.equalTo(temperatureLabel.snp.bottom).offset(23)
             $0.leading.equalTo(highestTempLabel.snp.trailing).offset(6)
         }
         

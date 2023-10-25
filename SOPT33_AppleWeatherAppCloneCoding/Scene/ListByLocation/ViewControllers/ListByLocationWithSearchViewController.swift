@@ -9,8 +9,10 @@ import UIKit
 import SnapKit
 
 final class ListByLocationWithSearchViewController: UIViewController {
-        
-    private var searchFilteredWeatherData: [LocationWeatherDataStruct] = []
+    
+    private var weatherData = WeatherDataStruct.dummy()
+    
+    //    private var filteredBySearchWeatherData: [WeatherDataStruct] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
     
@@ -35,17 +37,18 @@ final class ListByLocationWithSearchViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 16
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
+        
         return stackView
     }()
     
-    private lazy var myLocationButton = LocationButton( target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    private lazy var myLocationButton = LocationButton(idx: 0, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private lazy var mokdongButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    private lazy var mokdongButton =  LocationButton(idx: 1, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private lazy var incheonButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    private lazy var incheonButton =  LocationButton(idx: 2, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private lazy var cheonanButton =  LocationButton(target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    private lazy var cheonanButton =  LocationButton(idx: 3, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,26 +75,29 @@ final class ListByLocationWithSearchViewController: UIViewController {
         locationButtonStackView.addArrangedSubviews(myLocationButton, mokdongButton, incheonButton, cheonanButton)
         
         locationListScrollView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
+            $0.trailing.bottom.leading.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
         }
         
         locationListContentView.snp.makeConstraints{
-            $0.edges.equalTo(locationListScrollView.contentLayoutGuide)
+            $0.edges.equalToSuperview()
             $0.width.equalTo(locationListScrollView.frameLayoutGuide)
         }
         
         locationButtonStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(15)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            
+            $0.top.bottom.equalToSuperview()
+            $0.trailing.leading.equalToSuperview().inset(20)
         }
         
     }
     
     @objc
-    private func pushToLocationDetailWeatherView() {
+    func pushToLocationDetailWeatherView(sender: LocationButton) {
+        
+        let index = sender.index
+        
         let nextVC = LocationDetailWeatherViewController()
+        nextVC.index = index
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -103,12 +109,10 @@ extension ListByLocationWithSearchViewController {
         
         locationSearchController.searchBar.placeholder = "도시 또는 공항 검색"
         locationSearchController.hidesNavigationBarDuringPresentation = false
-        locationSearchController.searchResultsUpdater = self
+        //        locationSearchController.searchResultsUpdater = self
         locationSearchController.obscuresBackgroundDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
-        
-        
         
         //검색창 검색 글씨 색깔 변경
         let textFieldInsideSearchBar = locationSearchController.searchBar.value(forKey: "searchField") as? UITextField
@@ -126,23 +130,39 @@ extension ListByLocationWithSearchViewController {
     }
     
     private func setWeatherData() {
-        myLocationButton.weatherData = WeatherDataStruct.dummy()[0].locationWeatherData[0]
-        mokdongButton.weatherData = WeatherDataStruct.dummy()[1].locationWeatherData[0]
-        incheonButton.weatherData = WeatherDataStruct.dummy()[2].locationWeatherData[0]
-        cheonanButton.weatherData = WeatherDataStruct.dummy()[3].locationWeatherData[0]
+        myLocationButton.weatherData = weatherData[0]
+        mokdongButton.weatherData = weatherData[1]
+        incheonButton.weatherData = weatherData[2]
+        cheonanButton.weatherData = weatherData[3]
     }
     
 }
 
-extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let enteringText = searchController.searchBar.text else { return }
-        print(enteringText)
-        
-        
-        
-        
-    }
-    
-}
+//extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
+//
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//
+//        guard let enteringText = searchController.searchBar.text else {
+//            filteredBySearchWeatherData = weatherData
+//            reloadView()
+//            return
+//        }
+//
+//        filteredBySearchWeatherData = weatherData.filter { data in
+//            return data.locationName.contains(enteringText)
+//        }
+//
+//        reloadView()
+//    }
+//
+//    func reloadView() {
+//
+//        print(filteredBySearchWeatherData)
+//
+//    }
+//}
+//
+//
+//
+
