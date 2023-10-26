@@ -32,7 +32,8 @@ class WeatherInfoByHourStackView: UIStackView {
     private func setStackView() {
         self.spacing = 14
         self.axis = .vertical
-        self.distribution = .fillEqually
+        self.distribution = .equalSpacing
+        
     }
     
     private func setLayout() {

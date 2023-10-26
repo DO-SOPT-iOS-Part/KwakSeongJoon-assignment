@@ -80,17 +80,18 @@ class DetailWeatherInfoViewController: UIViewController {
         }
         
         detailVerticalContentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalTo(detailVerticalScrollView.frameLayoutGuide)
+            $0.edges.equalTo(detailVerticalScrollView.contentLayoutGuide)
+            $0.width.equalTo(UIScreen.main.bounds.width)
         }
         
         headerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
         }
         
         weatherInfoByHourView.snp.makeConstraints {
             $0.top.equalTo(headerStackView.snp.bottom).offset(44)
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
         }
         
     }

@@ -46,8 +46,7 @@ class LocationDetailWeatherViewController: UIViewController {
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
     lazy var pagecontrol = UIBarButtonItem(customView: pageControl)
-   
-    let toolBar = UIToolbar()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +77,8 @@ class LocationDetailWeatherViewController: UIViewController {
             $0.edges.equalToSuperview()
 
         }
+        
+
         
         pageViewController.didMove(toParent: self)
         
@@ -127,7 +128,6 @@ extension LocationDetailWeatherViewController: UIPageViewControllerDataSource, U
         guard let index = locationVCs.firstIndex(of: viewController) else { return nil }
         let previousIndex = index - 1
         if previousIndex >= 0 {
-            //            pageControl.currentPage = previousIndex
             return locationVCs[previousIndex]
         }
         return nil
@@ -137,7 +137,6 @@ extension LocationDetailWeatherViewController: UIPageViewControllerDataSource, U
         guard let index = locationVCs.firstIndex(of: viewController) else { return nil }
         let nextIndex = index + 1
         if nextIndex < locationVCs.count {
-            //            pageControl.currentPage = nextIndex
             return locationVCs[nextIndex]
         }
         return nil

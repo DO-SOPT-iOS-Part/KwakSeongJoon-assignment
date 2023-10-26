@@ -26,8 +26,7 @@ class WeatherInfoByHourView: UIView {
     
     private let weatherByHourScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.alwaysBounceHorizontal = true
-        
+        scrollView.alwaysBounceHorizontal = true        
         return scrollView
     }()
     
@@ -36,8 +35,9 @@ class WeatherInfoByHourView: UIView {
     private let wholeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 32
-//        stackView.distribution = .fillEqually
+        stackView.spacing = 22
+        stackView.distribution = .equalSpacing
+        
         return stackView
     }()
     
@@ -74,15 +74,11 @@ class WeatherInfoByHourView: UIView {
         super.init(frame: .zero)
         
         setSelfView()
-        setData()
         setLayout()
-    }
-    
-    
-    func setData() {
         
     }
     
+
     private func setSelfView() {
         
         self.layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.03).cgColor
@@ -97,13 +93,9 @@ class WeatherInfoByHourView: UIView {
         weatherByHourContentView.addSubview(wholeStackView)
         wholeStackView.addArrangedSubviews(nowStackView, firStackView, seStackView, thStackView, foStackView, fiStackView, sixStackView, sevStackView, eigStackView, ninStackView)
         
-        self.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width - 40)
-            $0.height.equalTo(212)
-        }
         descripLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
-            $0.width.trailing.equalToSuperview().inset(15)
+            $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(45)
         }
         
@@ -122,13 +114,11 @@ class WeatherInfoByHourView: UIView {
         
         weatherByHourContentView.snp.makeConstraints {
             $0.edges.equalTo(weatherByHourScrollView.contentLayoutGuide)
-            $0.width.equalTo(wholeStackView.snp.width)
+            $0.height.equalTo(weatherByHourScrollView.snp.height)
         }
         
         wholeStackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.height.equalTo(weatherByHourContentView)
-
         }
         
     }
