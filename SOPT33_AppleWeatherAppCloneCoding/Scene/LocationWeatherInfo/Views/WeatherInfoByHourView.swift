@@ -27,6 +27,7 @@ class WeatherInfoByHourView: UIView {
     private let weatherByHourScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceHorizontal = true
+        
         return scrollView
     }()
     
@@ -36,6 +37,7 @@ class WeatherInfoByHourView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 32
+//        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -95,10 +97,13 @@ class WeatherInfoByHourView: UIView {
         weatherByHourContentView.addSubview(wholeStackView)
         wholeStackView.addArrangedSubviews(nowStackView, firStackView, seStackView, thStackView, foStackView, fiStackView, sixStackView, sevStackView, eigStackView, ninStackView)
         
+        self.snp.makeConstraints {
+            $0.width.equalTo(UIScreen.main.bounds.width - 40)
+            $0.height.equalTo(212)
+        }
         descripLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(305)
+            $0.width.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(45)
         }
         
@@ -110,20 +115,20 @@ class WeatherInfoByHourView: UIView {
         }
         
         weatherByHourScrollView.snp.makeConstraints {
-            $0.top.equalTo(divideView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(divideView.snp.bottom).offset(14)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(10)
         }
         
         weatherByHourContentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-//            $0.height.equalTo(weatherByHourScrollView.frameLayoutGuide)
+            $0.edges.equalTo(weatherByHourScrollView.contentLayoutGuide)
             $0.width.equalTo(wholeStackView.snp.width)
         }
         
         wholeStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14)
-            $0.bottom.equalToSuperview().inset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(weatherByHourContentView)
+
         }
         
     }

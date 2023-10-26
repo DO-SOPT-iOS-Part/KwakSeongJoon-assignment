@@ -57,12 +57,6 @@ class DetailWeatherInfoViewController: UIViewController {
         super.viewDidLoad()
 
         setLayout()
-        
-    }
-    
-    //처음 디테일뷰에 진입할 때도 안보이게 하기 위해
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
 
     }
     
@@ -91,14 +85,13 @@ class DetailWeatherInfoViewController: UIViewController {
         }
         
         headerStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(34)
-            $0.trailing.leading.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         weatherInfoByHourView.snp.makeConstraints {
             $0.top.equalTo(headerStackView.snp.bottom).offset(44)
-            $0.trailing.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(212)
+            $0.centerX.equalToSuperview()
         }
+        
     }
 }

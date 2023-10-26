@@ -24,7 +24,7 @@ class WeatherInfoByHourStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+        weatherImage.contentMode = .scaleAspectFill
         setLayout()
         setStackView()
     }
@@ -32,21 +32,11 @@ class WeatherInfoByHourStackView: UIStackView {
     private func setStackView() {
         self.spacing = 14
         self.axis = .vertical
-//        self.distribution = .equalSpacing
+        self.distribution = .fillEqually
     }
     
     private func setLayout() {
         self.addArrangedSubviews(timeByhourLabel,weatherImage,tempByHourLabel)
-        
-        self.snp.makeConstraints {
-            $0.width.equalTo(44)
-            $0.height.equalTo(122)
-        }
-        
-        weatherImage.snp.makeConstraints {
-            $0.width.height.equalTo(44)
-        }
-        
     }
     
     required init(coder: NSCoder) {

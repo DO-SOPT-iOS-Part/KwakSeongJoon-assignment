@@ -54,10 +54,10 @@ final class ListByLocationWithSearchViewController: UIViewController {
         super.viewDidLoad()
         
         setStyle()
-        setLaytout()
-        setSearchController()
         setWeatherData()
-        
+        setLayout()
+
+        setSearchController()
     }
     
     private func setStyle() {
@@ -65,7 +65,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
         locationListContentView.backgroundColor = .black
     }
     
-    private func setLaytout() {
+    private func setLayout() {
         self.view.addSubviews(locationListScrollView)
         
         locationListScrollView.addSubviews(locationListContentView)
@@ -91,28 +91,15 @@ final class ListByLocationWithSearchViewController: UIViewController {
         
     }
     
-    @objc
-    func pushToLocationDetailWeatherView(sender: LocationButton) {
-        
-        let index = sender.index
-        
-        let nextVC = LocationDetailWeatherViewController()
-        nextVC.index = index
-        self.navigationController?.pushViewController(nextVC, animated: true)
-    }
-}
-
-
-extension ListByLocationWithSearchViewController {
-    
     private func setSearchController() {
         
         locationSearchController.searchBar.placeholder = "도시 또는 공항 검색"
         locationSearchController.hidesNavigationBarDuringPresentation = false
-        //        locationSearchController.searchResultsUpdater = self
+//        locationSearchController.searchResultsUpdater = self
         locationSearchController.obscuresBackgroundDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
+        
         
         //검색창 검색 글씨 색깔 변경
         let textFieldInsideSearchBar = locationSearchController.searchBar.value(forKey: "searchField") as? UITextField
@@ -136,10 +123,25 @@ extension ListByLocationWithSearchViewController {
         cheonanButton.weatherData = weatherData[3]
     }
     
+    @objc
+    func pushToLocationDetailWeatherView(sender: LocationButton) {
+        
+        let index = sender.index
+        
+        let nextVC = LocationDetailWeatherViewController()
+        nextVC.index = index
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+
+extension ListByLocationWithSearchViewController {
+    
+    
+    
 }
 
 //extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
-//
 //
 //    func updateSearchResults(for searchController: UISearchController) {
 //
@@ -165,4 +167,4 @@ extension ListByLocationWithSearchViewController {
 //
 //
 //
-
+//
