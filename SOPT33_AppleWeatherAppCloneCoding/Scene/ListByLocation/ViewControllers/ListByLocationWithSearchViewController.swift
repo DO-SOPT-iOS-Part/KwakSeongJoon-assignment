@@ -12,7 +12,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     private var weatherData = WeatherDataStruct.dummy()
     
-    //    private var filteredBySearchWeatherData: [WeatherDataStruct] = []
+    private var filteredBySearchWeatherData: [String] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
     
@@ -42,13 +42,25 @@ final class ListByLocationWithSearchViewController: UIViewController {
         return stackView
     }()
     
+    
+    
     private lazy var myLocationButton = LocationButton(idx: 0, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
     private lazy var mokdongButton =  LocationButton(idx: 1, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
     private lazy var incheonButton =  LocationButton(idx: 2, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
     
-    private lazy var cheonanButton =  LocationButton(idx: 3, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    private lazy var busanButton =  LocationButton(idx: 3, target: self, addTarget: #selector(pushToLocationDetailWeatherView))
+    
+    private var locationButtonSet: [LocationButton] = []
+    
+    var isFiltering: Bool {
+        let searchController = self.navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isSearchBarHasText
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +68,16 @@ final class ListByLocationWithSearchViewController: UIViewController {
         setStyle()
         setWeatherData()
         setLayout()
-
         setSearchController()
     }
     
     private func setStyle() {
         view.backgroundColor = .black
         locationListContentView.backgroundColor = .black
+        
+        //스크롤했을 때 네비바 색깔
+        self.navigationController?.navigationBar.barTintColor = .black
+        
     }
     
     private func setLayout() {
@@ -72,7 +87,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
         
         locationListContentView.addSubviews(locationButtonStackView)
         
-        locationButtonStackView.addArrangedSubviews(myLocationButton, mokdongButton, incheonButton, cheonanButton)
+        locationButtonStackView.addArrangedSubviews(myLocationButton, mokdongButton, incheonButton, busanButton)
         
         locationListScrollView.snp.makeConstraints{
             $0.trailing.bottom.leading.equalToSuperview()
@@ -95,8 +110,12 @@ final class ListByLocationWithSearchViewController: UIViewController {
         
         locationSearchController.searchBar.placeholder = "도시 또는 공항 검색"
         locationSearchController.hidesNavigationBarDuringPresentation = false
-//        locationSearchController.searchResultsUpdater = self
+        locationSearchController.searchResultsUpdater = self
         locationSearchController.obscuresBackgroundDuringPresentation = false
+        
+        //cancel 버튼 text를 "취소로" 변경
+        locationSearchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+        
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = locationSearchController
         
@@ -109,18 +128,23 @@ final class ListByLocationWithSearchViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = optionButton
         
+        
+        
+        //스크롤 됐을 때, 타이틀 색 변경
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         // Large title로 하고 싶을 때 추가
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         //Large title 색 변경
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     private func setWeatherData() {
         myLocationButton.weatherData = weatherData[0]
         mokdongButton.weatherData = weatherData[1]
         incheonButton.weatherData = weatherData[2]
-        cheonanButton.weatherData = weatherData[3]
+        busanButton.weatherData = weatherData[3]
     }
     
     @objc
@@ -134,37 +158,34 @@ final class ListByLocationWithSearchViewController: UIViewController {
     }
 }
 
+extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
 
-extension ListByLocationWithSearchViewController {
     
-    
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let searchingText = searchController.searchBar.searchTextField.text else { return }
+        
+        [myLocationButton, mokdongButton, incheonButton, busanButton].forEach { button in
+            locationButtonSet.append(button)
+        }
+        
+        if isFiltering == false {
+            locationButtonSet.forEach { button in
+                button.isHidden = false
+            }
+        } else {
+            locationButtonSet.forEach { button in
+                if button.weatherData?.locationName.contains(searchingText) == true {
+                    button.isHidden = false
+                } else {
+                    button.isHidden = true
+                }
+            }
+        }
+    }
 }
 
-//extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
-//
-//    func updateSearchResults(for searchController: UISearchController) {
-//
-//        guard let enteringText = searchController.searchBar.text else {
-//            filteredBySearchWeatherData = weatherData
-//            reloadView()
-//            return
-//        }
-//
-//        filteredBySearchWeatherData = weatherData.filter { data in
-//            return data.locationName.contains(enteringText)
-//        }
-//
-//        reloadView()
-//    }
-//
-//    func reloadView() {
-//
-//        print(filteredBySearchWeatherData)
-//
-//    }
-//}
-//
-//
-//
-//
+
+
+
+
