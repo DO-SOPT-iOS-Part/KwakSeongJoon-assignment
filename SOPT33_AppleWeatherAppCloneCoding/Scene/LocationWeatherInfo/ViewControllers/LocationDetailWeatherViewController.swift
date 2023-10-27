@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LocationDetailWeatherViewController: UIViewController {
+final class LocationDetailWeatherViewController: UIViewController {
     
-    var weatherData = WeatherDataStruct.dummy()
+    private let weatherData = WeatherDataStruct.dummy()
     
     var index: Int = 0
     
@@ -21,17 +21,17 @@ class LocationDetailWeatherViewController: UIViewController {
     
     private let busanVC = DetailWeatherInfoViewController()
     
-    lazy var locationVCs: [UIViewController] = {
+    private lazy var locationVCs: [UIViewController] = {
         return  [myLocationVC, mokdongVC, incheonVC, busanVC]
     }()
     
     
-    lazy var pageViewController: UIPageViewController = {
+    private lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         return vc
     }()
     
-    lazy var pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = locationVCs.count
         pageControl.currentPage = index
@@ -45,7 +45,7 @@ class LocationDetailWeatherViewController: UIViewController {
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
-    lazy var pagecontrol = UIBarButtonItem(customView: pageControl)
+    private lazy var pagecontrol = UIBarButtonItem(customView: pageControl)
 
     
     override func viewDidLoad() {
@@ -77,9 +77,6 @@ class LocationDetailWeatherViewController: UIViewController {
             $0.edges.equalToSuperview()
 
         }
-        
-
-        
         pageViewController.didMove(toParent: self)
         
     }

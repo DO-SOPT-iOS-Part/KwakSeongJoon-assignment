@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherInfoByHourView: UIView {
+final class WeatherInfoByHourView: UIView {
     
     
     let descripLabel: SFFontLabel = {

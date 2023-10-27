@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SFFontLabel: UILabel {
+final class SFFontLabel: UILabel {
     init(
         size: CGFloat,
         weight: UIFont.Weight

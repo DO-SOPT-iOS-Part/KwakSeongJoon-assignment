@@ -148,7 +148,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
     }
     
     @objc
-    func pushToLocationDetailWeatherView(sender: LocationButton) {
+    private func pushToLocationDetailWeatherView(sender: LocationButton) {
         
         let index = sender.index
         

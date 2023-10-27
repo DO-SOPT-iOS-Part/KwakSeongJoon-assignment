@@ -9,49 +9,12 @@ import UIKit
 
 final class LocationButton: UIButton {
     
-    private let locationLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 24, weight: .bold)
-        return label
-    }()
-    
-    private let timeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 17, weight: .medium)
-        return label
-    }()
-    
-    private let weatherInfoLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 16, weight: .medium)
-        
-        
-        return label
-    }()
-    
-    private let temperatureLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 52, weight: .light)
-        return label
-    }()
-    
-    private let highestTempLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 15, weight: .medium)
-        return label
-    }()
-    
-    private let lowestTempLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.sfPro(size: 15, weight: .medium)
-        return label
-    }()
+    private let locationLabel = SFFontLabel(size: 24, weight: .bold)
+    private let timeLabel = SFFontLabel(size: 17, weight: .medium)
+    private let weatherInfoLabel = SFFontLabel(size: 16, weight: .medium)
+    private let temperatureLabel = SFFontLabel(size: 52, weight: .light)
+    private let highestTempLabel = SFFontLabel(size: 15, weight: .medium)
+    private let lowestTempLabel = SFFontLabel(size: 15, weight: .medium)
     
     private enum Size {
         static let buttonHeight: CGFloat = 117 /  335
@@ -80,22 +43,17 @@ final class LocationButton: UIButton {
             self.addTarget(target, action: addTarget, for: .touchUpInside)
             self.setBackgroundImage(ImageLiterals.MainView.mainListBackGroundImage, for: .normal)
             self.index = idx
-            setStyle()
             
-            
+            setLayout()
         }
     
-    
-    private func setStyle() {
-        
-        
+    private func setLayout() {
         
         self.addSubviews(locationLabel, timeLabel, weatherInfoLabel, temperatureLabel, highestTempLabel, lowestTempLabel)
         
         locationLabel.snp.makeConstraints{
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(16)
-            
         }
         
         timeLabel.snp.makeConstraints{
@@ -123,12 +81,9 @@ final class LocationButton: UIButton {
             $0.top.equalTo(temperatureLabel.snp.bottom).offset(23)
             $0.leading.equalTo(highestTempLabel.snp.trailing).offset(6)
         }
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

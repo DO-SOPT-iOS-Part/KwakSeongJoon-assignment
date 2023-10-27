@@ -7,11 +7,11 @@
 
 import UIKit
 
-class WeatherInfoByHourStackView: UIStackView {
+final class WeatherInfoByHourStackView: UIStackView {
     
-    let timeByhourLabel = SFFontLabel(size: 17, weight: .medium)
-    let weatherImage = UIImageView()
-    let tempByHourLabel = SFFontLabel(size: 22, weight: .medium)
+    private let timeByhourLabel = SFFontLabel(size: 17, weight: .medium)
+    private let weatherImage = UIImageView()
+    private let tempByHourLabel = SFFontLabel(size: 22, weight: .medium)
     
     var weatherInfoByHour: WeatherInfoByHour? {
         didSet {

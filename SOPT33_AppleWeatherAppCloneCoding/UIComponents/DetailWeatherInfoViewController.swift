@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailWeatherInfoViewController: UIViewController {
+final class DetailWeatherInfoViewController: UIViewController {
         
     private let detailVerticalScrollView: UIScrollView = {
         let scrollView = UIScrollView()
