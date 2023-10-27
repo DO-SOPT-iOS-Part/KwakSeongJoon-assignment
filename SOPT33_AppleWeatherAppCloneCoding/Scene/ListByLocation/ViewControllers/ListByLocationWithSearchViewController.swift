@@ -69,6 +69,21 @@ final class ListByLocationWithSearchViewController: UIViewController {
         setWeatherData()
         setLayout()
         setSearchController()
+        
+    }
+    
+    //다시 화면 돌아왔을 때, 초기화면으로 돌리기 위해
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if isFiltering {
+            locationButtonSet.forEach { $0.isHidden = false }
+            locationSearchController.searchBar.text = nil
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
     }
     
     private func setStyle() {
