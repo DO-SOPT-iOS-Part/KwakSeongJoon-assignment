@@ -90,8 +90,9 @@ final class ListByLocationWithSearchViewController: UIViewController {
         view.backgroundColor = .black
         locationListContentView.backgroundColor = .black
         
-        //스크롤했을 때 네비바 색깔
+        //스크롤했을 때 네비바 색깔, toolbar 색깔
         self.navigationController?.navigationBar.barTintColor = .black
+        self.navigationController?.toolbar.barTintColor = .black
         
     }
     
