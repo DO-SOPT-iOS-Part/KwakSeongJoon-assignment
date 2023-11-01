@@ -17,7 +17,6 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     private let detailVerticalContentView = UIView()
     
-    
     private let backgroundImage = UIImageView(image: ImageLiterals.detailView.backgroundImage)
     
     private let locationNameLabel = SFFontLabel(size: 36, weight: .regular)
