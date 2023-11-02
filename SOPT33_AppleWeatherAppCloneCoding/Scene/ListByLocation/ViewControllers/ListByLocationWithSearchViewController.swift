@@ -12,14 +12,13 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     private var weatherData = WeatherDataStruct.dummy()
     
-    private var filteredBySearchWeatherData: [String] = []
+    private var filteredBySearchWeatherData: [WeatherDataStruct] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
     
     private let locationListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-//        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled = true
@@ -55,9 +54,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
         setCollectionView()
         
     }
-    
 
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
           self.view.endEditing(true)
     }
@@ -65,8 +62,9 @@ final class ListByLocationWithSearchViewController: UIViewController {
     private func setStyle() {
         view.backgroundColor = .black
         
-        //스크롤했을 때 네비바 색깔
+        //스크롤했을 때 네비바, 툴바 색깔
         self.navigationController?.navigationBar.barTintColor = .black
+        self.navigationController?.toolbar.barTintColor = .black
         
     }
     
@@ -96,13 +94,19 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return weatherData.count
+        return isFiltering ? filteredBySearchWeatherData.count : weatherData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationListCollectionViewCell.identifier, for: indexPath) as? LocationListCollectionViewCell else { return UICollectionViewCell()}
-        cell.cellWeatherData = self.weatherData[indexPath.section]
+        
+        if isFiltering {
+            cell.cellWeatherData = self.filteredBySearchWeatherData[indexPath.section]
+        } else {
+            cell.cellWeatherData = self.weatherData[indexPath.section]
+        }
+        
         return cell
                 
     }
@@ -166,8 +170,11 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
         
         guard let searchingText = searchController.searchBar.searchTextField.text else { return }
         
+        filteredBySearchWeatherData = weatherData.filter { $0.locationName.contains(searchingText)}
         
+        self.locationListCollectionView.reloadData()
       
     }
+
 }
 
