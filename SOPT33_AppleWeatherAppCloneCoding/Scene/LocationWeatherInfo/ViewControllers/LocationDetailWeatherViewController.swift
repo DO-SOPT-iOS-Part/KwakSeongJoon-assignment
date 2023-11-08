@@ -25,7 +25,6 @@ final class LocationDetailWeatherViewController: UIViewController {
         return  [myLocationVC, mokdongVC, incheonVC, busanVC]
     }()
     
-    
     private lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         return vc
@@ -39,14 +38,14 @@ final class LocationDetailWeatherViewController: UIViewController {
         return pageControl
     }()
     
+    private lazy var pageControlBarButtonItem = UIBarButtonItem(customView: pageControl)
+    
     private lazy var mapButton = UIBarButtonItem(image: ImageLiterals.detailView.mapImage, style: .plain, target: self, action: #selector(mapButtonTapped))
     
     private lazy var goToListVCButton = UIBarButtonItem(image: ImageLiterals.detailView.locationListImage, style: .plain, target: self, action: #selector(goToListVCButtonTapped))
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
-    private lazy var pagecontrol = UIBarButtonItem(customView: pageControl)
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +57,6 @@ final class LocationDetailWeatherViewController: UIViewController {
         hideBackButton()
     }
     
-    
-
     private func setPageViewController() {
         
         pageViewController.dataSource = self
@@ -67,6 +64,7 @@ final class LocationDetailWeatherViewController: UIViewController {
         
         let firstVC = locationVCs[index]
         pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        
         
     }
     
@@ -84,10 +82,10 @@ final class LocationDetailWeatherViewController: UIViewController {
     }
     
     private func setData() {
-        myLocationVC.detailWeatherData = weatherData[0]
-        mokdongVC.detailWeatherData = weatherData[1]
-        incheonVC.detailWeatherData = weatherData[2]
-        busanVC.detailWeatherData = weatherData[3]
+        myLocationVC.weatherData = weatherData[0]
+        mokdongVC.weatherData = weatherData[1]
+        incheonVC.weatherData = weatherData[2]
+        busanVC.weatherData = weatherData[3]
     }
     
     private func setToolBar() {
@@ -95,7 +93,7 @@ final class LocationDetailWeatherViewController: UIViewController {
         goToListVCButton.tintColor = .white
         
         self.navigationController?.isToolbarHidden = false
-        self.toolbarItems = [mapButton, flexibleSpace, pagecontrol, flexibleSpace, goToListVCButton]
+        self.toolbarItems = [mapButton, flexibleSpace, pageControlBarButtonItem, flexibleSpace, goToListVCButton]
        
         let toolbarBackgroundColor = UIToolbarAppearance()
         toolbarBackgroundColor.configureWithOpaqueBackground()

@@ -54,6 +54,12 @@ final class ListByLocationWithSearchViewController: UIViewController {
         setCollectionView()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
           self.view.endEditing(true)
@@ -75,7 +81,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
         locationListCollectionView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
-        
     }
     
     private func setCollectionView() {
@@ -96,7 +101,7 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return isFiltering ? filteredBySearchWeatherData.count : weatherData.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationListCollectionViewCell.identifier, for: indexPath) as? LocationListCollectionViewCell else { return UICollectionViewCell()}
@@ -112,7 +117,10 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let nextVC = LocationDetailWeatherViewController()
+        nextVC.index = indexPath.section
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
