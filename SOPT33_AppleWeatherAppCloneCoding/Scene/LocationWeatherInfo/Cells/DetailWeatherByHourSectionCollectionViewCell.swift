@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailWeatherSectionZeroCollectionViewCell: UICollectionViewCell {
+class DetailWeatherByHourSectionCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "detailWeatherSectionZeroCollectionViewCell"
     
@@ -21,7 +21,12 @@ class DetailWeatherSectionZeroCollectionViewCell: UICollectionViewCell {
     }()
     
     private var hourLabel = SFFontLabel(size: 17, weight: .medium)
-    private var weatherImage = UIImageView()
+    private var weatherImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     private var hourTempLabel = SFFontLabel(size: 22, weight: .medium)
     
     var hourWeatherData: WeatherInfoByHour? {
@@ -37,7 +42,7 @@ class DetailWeatherSectionZeroCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setLayout()
-        self.contentView.backgroundColor = .clear
+        setStyle()
         
     }
     
@@ -46,7 +51,8 @@ class DetailWeatherSectionZeroCollectionViewCell: UICollectionViewCell {
         hourWeatherStackView.addArrangedSubviews(hourLabel, weatherImage, hourTempLabel)
         
         hourWeatherStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.trailing.leading.bottom.equalToSuperview()
+            $0.top.equalToSuperview().inset(12)
         }
         
     }

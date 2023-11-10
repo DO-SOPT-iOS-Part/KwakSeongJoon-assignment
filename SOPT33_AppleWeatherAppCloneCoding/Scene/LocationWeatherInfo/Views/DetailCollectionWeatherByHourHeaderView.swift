@@ -8,13 +8,27 @@
 import UIKit
 
 final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
-        
+    
     static let identifier = "DetailCollectionWeatherByHourHeaderView"
+    
+    var headerData: WeatherDataStruct? {
+        didSet {
+            guard let data = headerData else { return }
+            hourWeatherDescriptionLabel.text = data.weatherDescription
+            
+        }
+    }
+    
+    private let divideView: UIView = {
+        let view = UIView()
+        view.alpha = 0.5
+        view.backgroundColor = .white
+        return view
+    }()
     
     private let hourWeatherDescriptionLabel: SFFontLabel = {
         let label = SFFontLabel(size: 18, weight: .regular)
         label.numberOfLines = 2
-        label.text = "나는넌야나는ㄴ ㅏㄴ는 너냥 아마도 너는 나고 나는 너고 아니야 나는 몰라 너야 나야 ㅏ너양 ㅏ냐아냐아야"
         return label
     }()
     
@@ -26,10 +40,18 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
     }
     
     private func setLayout() {
-        self.addSubviews(hourWeatherDescriptionLabel)
+        self.addSubviews(hourWeatherDescriptionLabel, divideView)
         
         hourWeatherDescriptionLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.top.equalToSuperview().inset(10)
+        }
+        
+        divideView.snp.makeConstraints {
+            $0.top.equalTo(hourWeatherDescriptionLabel.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     
