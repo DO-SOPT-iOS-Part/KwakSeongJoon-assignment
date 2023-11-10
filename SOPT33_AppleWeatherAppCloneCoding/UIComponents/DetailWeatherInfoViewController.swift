@@ -71,6 +71,7 @@ final class DetailWeatherInfoViewController: UIViewController {
         detailWeatherCollectionView.register(DetailWeatherByHourSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailWeatherByHourSectionCollectionViewCell.identifier)
         detailWeatherCollectionView.register(DetailCollectionWeatherByHourHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier)
         detailWeatherCollectionView.register(DetailTenDayWeatherSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailTenDayWeatherSectionCollectionViewCell.identifier)
+        detailWeatherCollectionView.register(DetailTenDayWeatherSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailTenDayWeatherSectionHeaderView.identifier)
         
         
     }
@@ -89,7 +90,7 @@ final class DetailWeatherInfoViewController: UIViewController {
                     return section
                     
                 case 1:
-                    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(55), heightDimension: .absolute(90)))
+                    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(55), heightDimension: .absolute(100)))
                     let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .estimated(1), heightDimension: .estimated(1)), subitems: [item])
                     let section = NSCollectionLayoutSection(group: group)
                     section.orthogonalScrollingBehavior = .continuous
@@ -103,19 +104,29 @@ final class DetailWeatherInfoViewController: UIViewController {
                     section.boundarySupplementaryItems = [header]
                     
                     let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: DetailHourSectionBackgroundView.identifier)
+                    sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
                     section.decorationItems = [sectionBackgroundDecoration]
-
+                    
                     return section
                     
                 case 2:
                     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(335), heightDimension: .absolute(55)))
                     let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .estimated(1), heightDimension: .estimated(1)), subitems: [item])
                     let section = NSCollectionLayoutSection(group: group)
-                    section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
+                    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+                    let header = NSCollectionLayoutBoundarySupplementaryItem(
+                        layoutSize: headerSize,
+                        elementKind: UICollectionView.elementKindSectionHeader,
+                        alignment: .top
+                    )
+                    section.boundarySupplementaryItems = [header]
+                    
                     
                     let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: DetailTenDaySectionCollectionBackGroundView.identifier)
                     //섹션 간격
-                    sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
+//                    header.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
+//                    
+//                    sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
 
                     section.decorationItems = [sectionBackgroundDecoration]
                     
@@ -154,7 +165,6 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         }
     }
     
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -162,9 +172,17 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier, for: indexPath) as? DetailCollectionWeatherByHourHeaderView else { return UICollectionReusableView()}
-            header.headerData = weatherData
-            return header
+            
+            if indexPath.section == 1 {
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier, for: indexPath) as? DetailCollectionWeatherByHourHeaderView else { return UICollectionReusableView()}
+                header.headerData = weatherData
+                return header
+            } else {
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailTenDayWeatherSectionHeaderView.identifier, for: indexPath) as? DetailTenDayWeatherSectionHeaderView else { return UICollectionReusableView()}
+                return header
+            }
+            
+            
             
         default:
             return UICollectionReusableView()

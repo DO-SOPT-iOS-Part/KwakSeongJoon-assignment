@@ -51,8 +51,9 @@ class DetailWeatherByHourSectionCollectionViewCell: UICollectionViewCell {
         hourWeatherStackView.addArrangedSubviews(hourLabel, weatherImage, hourTempLabel)
         
         hourWeatherStackView.snp.makeConstraints {
-            $0.trailing.leading.bottom.equalToSuperview()
+            $0.trailing.leading.equalToSuperview()
             $0.top.equalToSuperview().inset(12)
+            $0.bottom.equalToSuperview().inset(10)
         }
         
     }
