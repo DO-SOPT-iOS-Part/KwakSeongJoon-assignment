@@ -15,7 +15,6 @@ final class DetailWeatherInfoViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .clear
         
         return collectionView
@@ -86,7 +85,7 @@ final class DetailWeatherInfoViewController: UIViewController {
                     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(280)))
                     let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1.5)), subitems: [item])
                     let section = NSCollectionLayoutSection(group: group)
-                    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 54, trailing: 0)
+                    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 44, trailing: 0)
                     return section
                     
                 case 1:
@@ -95,12 +94,13 @@ final class DetailWeatherInfoViewController: UIViewController {
                     let section = NSCollectionLayoutSection(group: group)
                     section.orthogonalScrollingBehavior = .continuous
                     section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 20, trailing: 0)
-                    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
+                    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(66))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: headerSize,
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .top
                     )
+                    header.pinToVisibleBounds = true
                     section.boundarySupplementaryItems = [header]
                     
                     let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: DetailHourSectionBackgroundView.identifier)
@@ -119,14 +119,12 @@ final class DetailWeatherInfoViewController: UIViewController {
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .top
                     )
+                    header.pinToVisibleBounds = true
+
                     section.boundarySupplementaryItems = [header]
                     
                     
                     let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: DetailTenDaySectionCollectionBackGroundView.identifier)
-                    //섹션 간격
-//                    header.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
-//                    
-//                    sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
 
                     section.decorationItems = [sectionBackgroundDecoration]
                     
@@ -172,15 +170,23 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            
-            if indexPath.section == 1 {
+            switch indexPath.section {
+            case 1:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier, for: indexPath) as? DetailCollectionWeatherByHourHeaderView else { return UICollectionReusableView()}
                 header.headerData = weatherData
                 return header
-            } else {
+                
+            case 2:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailTenDayWeatherSectionHeaderView.identifier, for: indexPath) as? DetailTenDayWeatherSectionHeaderView else { return UICollectionReusableView()}
                 return header
+                
+            default:
+                return UICollectionReusableView()
+
             }
+            
+            
+            
             
             
             
@@ -216,4 +222,6 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         
     }
 }
+
+
 

@@ -11,13 +11,9 @@ final class DetailTenDayWeatherSectionHeaderView: UICollectionReusableView {
     
     static let identifier = "DetailTenDayWeatherSectionHeaderView"
     
-    
-   
-    
     private let tenDayheaderLabel: SFFontLabel = {
         let label = SFFontLabel(size: 15, weight: .medium)
         label.text = "10일간의 일기예보"
-        label.alpha = 0.2
         return label
     }()
     
@@ -31,6 +27,11 @@ final class DetailTenDayWeatherSectionHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
+        setStyle()
+    }
+    
+    private func setStyle() {
+        self.backgroundColor = UIColor(red: 0.175, green: 0.201, blue: 0.249, alpha: 1)
     }
     
     private func setLayout() {

@@ -17,8 +17,7 @@ final class DetailTenDaySectionCollectionBackGroundView: UICollectionReusableVie
     }
     
     private func setStyle() {
-        self.alpha = 0.2
-        self.layer.backgroundColor = UIColor(red: 0.175, green: 0.201, blue: 0.249, alpha: 1).cgColor
+        self.backgroundColor = UIColor(red: 0.175, green: 0.201, blue: 0.249, alpha: 1)
         self.layer.cornerRadius = 15
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25).cgColor

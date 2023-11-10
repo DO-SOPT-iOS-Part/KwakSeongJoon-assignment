@@ -21,12 +21,12 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
     
     private let divideView: UIView = {
         let view = UIView()
-        view.alpha = 0.5
+//        view.alpha = 0.5
         view.backgroundColor = .white
         return view
     }()
     
-    private let hourWeatherDescriptionLabel: SFFontLabel = {
+     var hourWeatherDescriptionLabel: SFFontLabel = {
         let label = SFFontLabel(size: 18, weight: .regular)
         label.numberOfLines = 2
         return label
@@ -34,8 +34,14 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setStyle()
         setLayout()
+        
+    }
+    
+    private func setStyle() {
+        self.backgroundColor = UIColor(red: 0.175, green: 0.201, blue: 0.249, alpha: 1)
+        self.layer.cornerRadius = 15
         
     }
     
@@ -48,7 +54,7 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
         }
         
         divideView.snp.makeConstraints {
-            $0.top.equalTo(hourWeatherDescriptionLabel.snp.bottom).offset(10)
+            $0.top.equalTo(self.snp.bottom)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(1)
@@ -59,3 +65,4 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
