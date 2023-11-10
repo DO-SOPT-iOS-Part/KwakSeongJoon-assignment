@@ -70,7 +70,7 @@ final class DetailWeatherInfoViewController: UIViewController {
         detailWeatherCollectionView.register(DetailHeaderSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier)
         detailWeatherCollectionView.register(DetailWeatherByHourSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailWeatherByHourSectionCollectionViewCell.identifier)
         detailWeatherCollectionView.register(DetailCollectionWeatherByHourHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier)
-        detailWeatherCollectionView.register(DetailTenDayWeatherSectionCollectionViewCell.self, forCellWithReuseIdentifier: <#T##String#>)
+        detailWeatherCollectionView.register(DetailTenDayWeatherSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailTenDayWeatherSectionCollectionViewCell.identifier)
         
         
     }
@@ -111,6 +111,14 @@ final class DetailWeatherInfoViewController: UIViewController {
                     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(335), heightDimension: .absolute(55)))
                     let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .estimated(1), heightDimension: .estimated(1)), subitems: [item])
                     let section = NSCollectionLayoutSection(group: group)
+                    section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
+                    
+                    let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: DetailTenDaySectionCollectionBackGroundView.identifier)
+                    //섹션 간격
+                    sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
+
+                    section.decorationItems = [sectionBackgroundDecoration]
+                    
                     return section
                     
                 default:
@@ -119,6 +127,7 @@ final class DetailWeatherInfoViewController: UIViewController {
                 }
             }
         layout.register(DetailHourSectionBackgroundView.self, forDecorationViewOfKind: DetailHourSectionBackgroundView.identifier)
+        layout.register(DetailTenDaySectionCollectionBackGroundView.self, forDecorationViewOfKind: DetailTenDaySectionCollectionBackGroundView.identifier)
                 return layout
             }
         }
@@ -137,6 +146,9 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         case 1:
             guard let weatherData else { return 0}
             return weatherData.detailWeatherByHour.count
+        case 2:
+            guard let weatherData else { return 0}
+            return weatherData.tenDayWeather.count
         default:
             return 0
         }
@@ -174,6 +186,11 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
             cell.hourWeatherData = weatherData?.detailWeatherByHour[indexPath.row]
             return cell
             
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTenDayWeatherSectionCollectionViewCell.identifier, for: indexPath) as? DetailTenDayWeatherSectionCollectionViewCell else { return UICollectionViewCell() }
+            
+            cell.tenDayWeatherData = weatherData?.tenDayWeather[indexPath.row]
+            return cell
             
         default:
             return UICollectionViewCell()
