@@ -27,6 +27,9 @@ enum ImageLiterals {
         static var searchImage: UIImage { .load(named: "searchImage") }
         static var snowImage: UIImage { .load(named: "snowImage") }
         static var ThunderImage: UIImage { .load(named: "ThunderImage") }
-
+        static var progressImage: UIImage { .load(named: "progressImage")}
+        static var calenderImage: UIImage { .load(named: "calendar")}
     }
+    
+    
 }
