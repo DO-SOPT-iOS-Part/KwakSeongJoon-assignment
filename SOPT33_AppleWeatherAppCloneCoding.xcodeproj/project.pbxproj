@@ -11,10 +11,12 @@
 		F43488372AE77BA400AB4959 /* DetailWeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */; };
 		F434883C2AE8248A00AB4959 /* WeatherInfoByHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434883B2AE8248A00AB4959 /* WeatherInfoByHourView.swift */; };
 		F434883E2AE83A4C00AB4959 /* WeatherInfoByHourStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434883D2AE83A4C00AB4959 /* WeatherInfoByHourStackView.swift */; };
+		F437E37E2B01F3FD0046AD83 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437E37D2B01F3FD0046AD83 /* NetworkError.swift */; };
+		F437E3802B01F5570046AD83 /* GetWeatherDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437E37F2B01F5570046AD83 /* GetWeatherDataService.swift */; };
 		F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C228B2ADC5C2500AA798D /* AppDelegate.swift */; };
 		F46C228E2ADC5C2500AA798D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C228D2ADC5C2500AA798D /* SceneDelegate.swift */; };
 		F46C22952ADC5C2900AA798D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46C22942ADC5C2900AA798D /* Assets.xcassets */; };
-		F46C22982ADC5C2900AA798D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46C22962ADC5C2900AA798D /* LaunchScreen.storyboard */; };
+		F46C22982ADC5C2900AA798D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		F46C22A92ADC6BBD00AA798D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F46C22A82ADC6BBD00AA798D /* SnapKit */; };
 		F46C22AB2ADC6BBD00AA798D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F46C22AA2ADC6BBD00AA798D /* SnapKit-Dynamic */; };
 		F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C22AC2ADC6D8800AA798D /* UIFont+.swift */; };
@@ -39,6 +41,8 @@
 		F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherInfoViewController.swift; sourceTree = "<group>"; };
 		F434883B2AE8248A00AB4959 /* WeatherInfoByHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoByHourView.swift; sourceTree = "<group>"; };
 		F434883D2AE83A4C00AB4959 /* WeatherInfoByHourStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoByHourStackView.swift; sourceTree = "<group>"; };
+		F437E37D2B01F3FD0046AD83 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		F437E37F2B01F5570046AD83 /* GetWeatherDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeatherDataService.swift; sourceTree = "<group>"; };
 		F46C22882ADC5C2500AA798D /* SOPT33_AppleWeatherAppCloneCoding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPT33_AppleWeatherAppCloneCoding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46C228B2ADC5C2500AA798D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46C228D2ADC5C2500AA798D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,39 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F437E3792B01F3C40046AD83 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F437E37C2B01F3F30046AD83 /* Base */,
+				F437E37B2B01F3EC0046AD83 /* Service */,
+				F437E37A2B01F3E70046AD83 /* DTO */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F437E37A2B01F3E70046AD83 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		F437E37B2B01F3EC0046AD83 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F437E37F2B01F5570046AD83 /* GetWeatherDataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F437E37C2B01F3F30046AD83 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F437E37D2B01F3FD0046AD83 /* NetworkError.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		F46C227F2ADC5C2500AA798D = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +138,7 @@
 		F46C228A2ADC5C2500AA798D /* SOPT33_AppleWeatherAppCloneCoding */ = {
 			isa = PBXGroup;
 			children = (
+				F437E3792B01F3C40046AD83 /* Network */,
 				F4F419DC2AE1158000AB8526 /* UIComponents */,
 				F4F419CF2AE10DD600AB8526 /* Scene */,
 				F46C22B62ADC831000AA798D /* Literals */,
@@ -290,7 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46C22B12ADC71DD00AA798D /* SF-Pro-Text-Regular.otf in Resources */,
-				F46C22982ADC5C2900AA798D /* LaunchScreen.storyboard in Resources */,
+				F46C22982ADC5C2900AA798D /* (null) in Resources */,
 				F4F419C72ADD2B6100AB8526 /* SF-Pro-Text-Bold.otf in Resources */,
 				F46C22B32ADC71DD00AA798D /* SF-Pro-Text-Medium.otf in Resources */,
 				F4F419C82ADD2B6100AB8526 /* SF-Pro-Text-Thin.otf in Resources */,
@@ -306,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F437E37E2B01F3FD0046AD83 /* NetworkError.swift in Sources */,
 				F4B811772AE6AE18007E946E /* SFFontLabel.swift in Sources */,
 				F4F419E02AE1162400AB8526 /* LocationButton.swift in Sources */,
 				F434883C2AE8248A00AB4959 /* WeatherInfoByHourView.swift in Sources */,
@@ -316,6 +355,7 @@
 				F46C22BA2ADC838F00AA798D /* UIImage+.swift in Sources */,
 				F46C22B82ADC831C00AA798D /* ImageLiterals.swift in Sources */,
 				F434883E2AE83A4C00AB4959 /* WeatherInfoByHourStackView.swift in Sources */,
+				F437E3802B01F5570046AD83 /* GetWeatherDataService.swift in Sources */,
 				F42AE87B2AEB7F0D00DD8391 /* UIViewController+.swift in Sources */,
 				F4F419D12AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
