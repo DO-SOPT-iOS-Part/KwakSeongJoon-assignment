@@ -10,19 +10,12 @@ import SnapKit
 
 final class ListByLocationWithSearchViewController: UIViewController {
     
-    var testWeatherAppData: WeatherAppData? {
-        didSet {
-            self.locationListCollectionView.reloadData()
-        }
-    }
     
     var totalData: [WeatherAppData] = [] {
         didSet {
             self.locationListCollectionView.reloadData()
         }
     }
-        
-    
 
     let locationArray: [String] = ["seoul", "daejeon", "cheonan", "jeju", "busan"]
     
@@ -192,9 +185,9 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         
-//        guard let searchingText = searchController.searchBar.searchTextField.text else { return }
+        guard let searchingText = searchController.searchBar.searchTextField.text else { return }
         
-//        filteredBySearchWeatherData = testWeatherAppData.filter { $0.locationName.contains(searchingText)}
+        filteredBySearchWeatherData = totalData.filter { $0.name.contains(searchingText)}
         
         self.locationListCollectionView.reloadData()
       

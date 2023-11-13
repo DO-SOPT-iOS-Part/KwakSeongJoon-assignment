@@ -12,7 +12,7 @@ class GetWeatherService {
     private init() {}
     
     func makeRequest(cityName: String) -> URLRequest {
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&units=metric&appid=f776f18d74bb51bb9b1480b3b89a7dc1")!
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&lang=kr&units=metric&appid=f776f18d74bb51bb9b1480b3b89a7dc1")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let header = ["Content-Type": "apllication/json"]
@@ -26,9 +26,6 @@ class GetWeatherService {
         do{
             let request = self.makeRequest(cityName: cityName)
             let (data, _) = try await URLSession.shared.data(for: request)
-//            guard let httpResponse = response as? HTTPURLResponse else {
-//                throw NetworkError.responseError
-//            }
             return parseWeatherData(data: data)
         }
         catch {

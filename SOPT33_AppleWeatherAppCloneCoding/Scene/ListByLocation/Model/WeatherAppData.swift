@@ -25,3 +25,4 @@ struct WeatherApp {
     let description: String
     let icon: String
 }
+

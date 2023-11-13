@@ -81,10 +81,10 @@ extension WeatherDataDTO {
         
         let main = MainApp(temp: Int(self.main.temp), temp_min: Int(self.main.tempMin), temp_max: Int(self.main.tempMax))
         
-        return WeatherAppData(weather: data, main: main, name: self.name, timeZone: makeTimeZoneToTime(timeZone: self.timezone))
+        return WeatherAppData(weather: data, main: main, name: translateCityNameToKorean(name: self.name), timeZone: makeTimeZoneToTime(timeZone: self.timezone))
     }
         
-    //서버에서 주는 timezone을 이용해 지역 시간 구해서 String 값으로 반환하는 func
+    //서버에서 주는 timezone을 이용해 지역 시간 구해서 String 값으로 반환하는 function
     func makeTimeZoneToTime(timeZone: Int) -> String {
         let today = Date()
         let dateFormatter = DateFormatter()
@@ -93,6 +93,19 @@ extension WeatherDataDTO {
         return dateFormatter.string(from: today)
         
     }
+    
+    //서버에서 주는 지역이름을 한글로 바꾸는 function
+    func translateCityNameToKorean(name: String) -> String {
+               let translations: [String: String] = [
+                   "Seoul": "서울",
+                   "Daejeon": "대전",
+                   "Cheonan": "천안",
+                   "Jeju": "제주",
+                   "Busan": "부산"
+               ]
+               return translations[name] ?? name
+           }
+
     
 }
 
