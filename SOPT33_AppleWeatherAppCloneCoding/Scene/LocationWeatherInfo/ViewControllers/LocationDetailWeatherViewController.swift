@@ -46,7 +46,6 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

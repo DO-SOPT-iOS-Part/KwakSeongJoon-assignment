@@ -10,9 +10,25 @@ import SnapKit
 
 final class ListByLocationWithSearchViewController: UIViewController {
     
+    var testWeatherAppData: WeatherAppData? {
+        didSet {
+            self.locationListCollectionView.reloadData()
+        }
+    }
+    
+    var totalData: [WeatherAppData] = [] {
+        didSet {
+            self.locationListCollectionView.reloadData()
+        }
+    }
+        
+    
+
+    let locationArray: [String] = ["seoul", "daejeon", "cheonan", "jeju", "busan"]
+    
     private var weatherData = WeatherDataStruct.dummy()
     
-    private var filteredBySearchWeatherData: [WeatherDataStruct] = []
+    private var filteredBySearchWeatherData: [WeatherAppData] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
     
@@ -47,18 +63,19 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         setStyle()
         setLayout()
         setSearchController()
         setCollectionView()
         
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.isNavigationBarHidden = false
+        getWeatherData()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -99,7 +116,7 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return isFiltering ? filteredBySearchWeatherData.count : weatherData.count
+        return isFiltering ? filteredBySearchWeatherData.count : totalData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,7 +126,7 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
         if isFiltering {
             cell.cellWeatherData = self.filteredBySearchWeatherData[indexPath.section]
         } else {
-            cell.cellWeatherData = self.weatherData[indexPath.section]
+            cell.cellWeatherData = self.totalData[indexPath.section]
         }
         
         return cell
@@ -120,7 +137,6 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
         
         let nextVC = LocationDetailWeatherViewController()
         nextVC.index = indexPath.section
-        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -176,9 +192,9 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         
-        guard let searchingText = searchController.searchBar.searchTextField.text else { return }
+//        guard let searchingText = searchController.searchBar.searchTextField.text else { return }
         
-        filteredBySearchWeatherData = weatherData.filter { $0.locationName.contains(searchingText)}
+//        filteredBySearchWeatherData = testWeatherAppData.filter { $0.locationName.contains(searchingText)}
         
         self.locationListCollectionView.reloadData()
       
@@ -186,3 +202,25 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
 
 }
 
+extension ListByLocationWithSearchViewController {
+    func getWeatherData() {
+        Task {
+            do {
+                for city in locationArray {
+                    guard let response = try await GetWeatherService.shared.getWeatherData(cityName: city) else { return }
+                    Task {
+                        await makeTotal(response: response)
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func makeTotal(response: WeatherAppData) async {
+        do { 
+            totalData.append(response)
+        }
+    }
+}
