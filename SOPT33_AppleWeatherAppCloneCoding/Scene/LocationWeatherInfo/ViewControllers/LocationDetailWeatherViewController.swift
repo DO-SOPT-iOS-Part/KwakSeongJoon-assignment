@@ -46,6 +46,13 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

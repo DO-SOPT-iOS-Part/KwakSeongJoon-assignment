@@ -22,7 +22,7 @@ struct WeatherDataDTO: Codable {
     let wind: Wind
     let clouds: Clouds
     let dt: Int
-    let sys: Sys
+//    let sys: Sys
     let timezone, id: Int
     let name: String
     let cod: Int
@@ -53,11 +53,11 @@ struct Main: Codable {
 }
 
 // MARK: - Sys
-struct Sys: Codable {
-    let type, id: Int
-    let country: String
-    let sunrise, sunset: Int
-}
+//struct Sys: Codable {
+//    let type, id: Int
+//    let country: String
+//    let sunrise, sunset: Int
+//}
 
 // MARK: - Weather
 struct Weather: Codable {
@@ -83,7 +83,7 @@ extension WeatherDataDTO {
         
         return WeatherAppData(weather: data, main: main, name: translateCityNameToKorean(name: self.name), timeZone: makeTimeZoneToTime(timeZone: self.timezone))
     }
-        
+    
     //서버에서 주는 timezone을 이용해 지역 시간 구해서 String 값으로 반환하는 function
     func makeTimeZoneToTime(timeZone: Int) -> String {
         let today = Date()
@@ -96,16 +96,16 @@ extension WeatherDataDTO {
     
     //서버에서 주는 지역이름을 한글로 바꾸는 function
     func translateCityNameToKorean(name: String) -> String {
-               let translations: [String: String] = [
-                   "Seoul": "서울",
-                   "Daejeon": "대전",
-                   "Cheonan": "천안",
-                   "Jeju": "제주",
-                   "Busan": "부산"
-               ]
-               return translations[name] ?? name
-           }
-
+        let translations: [String: String] = [
+            "Seoul": "서울",
+            "Daejeon": "대전",
+            "Cheonan": "천안",
+            "Jeju City": "제주",
+            "Busan": "부산"
+        ]
+        return translations[name] ?? name
+    }
+    
     
 }
 

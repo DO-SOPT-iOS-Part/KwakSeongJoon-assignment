@@ -10,17 +10,16 @@ import SnapKit
 
 final class ListByLocationWithSearchViewController: UIViewController {
     
-    
-    var totalData: [WeatherAppData] = [] {
+    private var totalLocationWeatherData: [WeatherAppData] = [] {
         didSet {
             self.locationListCollectionView.reloadData()
         }
     }
+    
+    let viewtest = UIView()
 
-    let locationArray: [String] = ["seoul", "daejeon", "cheonan", "jeju", "busan"]
-    
-    private var weatherData = WeatherDataStruct.dummy()
-    
+    private let locationArray: [String] = ["seoul", "daejeon", "cheonan", "jeju", "busan"]
+        
     private var filteredBySearchWeatherData: [WeatherAppData] = []
     
     private let locationSearchController = UISearchController(searchResultsController: nil)
@@ -56,7 +55,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         setStyle()
         setLayout()
         setSearchController()
@@ -68,7 +66,9 @@ final class ListByLocationWithSearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        totalLocationWeatherData.removeAll()
         getWeatherData()
+        self.navigationController?.isToolbarHidden = true
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -89,7 +89,8 @@ final class ListByLocationWithSearchViewController: UIViewController {
         self.view.addSubviews(locationListCollectionView)
         
         locationListCollectionView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalToSuperview()
         }
     }
     
@@ -104,12 +105,14 @@ extension ListByLocationWithSearchViewController: UICollectionViewDelegate { }
 
 extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return isFiltering ? filteredBySearchWeatherData.count : totalData.count
+        return isFiltering ? filteredBySearchWeatherData.count : totalLocationWeatherData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -119,7 +122,7 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
         if isFiltering {
             cell.cellWeatherData = self.filteredBySearchWeatherData[indexPath.section]
         } else {
-            cell.cellWeatherData = self.totalData[indexPath.section]
+            cell.cellWeatherData = self.totalLocationWeatherData[indexPath.section]
         }
         
         return cell
@@ -187,7 +190,7 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
         
         guard let searchingText = searchController.searchBar.searchTextField.text else { return }
         
-        filteredBySearchWeatherData = totalData.filter { $0.name.contains(searchingText)}
+        filteredBySearchWeatherData = totalLocationWeatherData.filter { $0.name.contains(searchingText)}
         
         self.locationListCollectionView.reloadData()
       
@@ -202,7 +205,8 @@ extension ListByLocationWithSearchViewController {
                 for city in locationArray {
                     guard let response = try await GetWeatherService.shared.getWeatherData(cityName: city) else { return }
                     Task {
-                        await makeTotal(response: response)
+                        await appendEachWeatherData(response: response)
+                        locationListCollectionView.reloadData()
                     }
                 }
             } catch {
@@ -211,9 +215,9 @@ extension ListByLocationWithSearchViewController {
         }
     }
     
-    func makeTotal(response: WeatherAppData) async {
+    func appendEachWeatherData(response: WeatherAppData) async {
         do { 
-            totalData.append(response)
+            totalLocationWeatherData.append(response)
         }
     }
 }

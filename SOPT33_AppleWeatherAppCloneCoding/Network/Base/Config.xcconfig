@@ -8,4 +8,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-//BASE_URL = https:/$()/
+BASE_URL = https:/$()/api.openweathermap.org
+API_KEY = f776f18d74bb51bb9b1480b3b89a7dc1
