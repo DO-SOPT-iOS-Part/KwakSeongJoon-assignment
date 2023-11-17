@@ -25,13 +25,13 @@ final class DetailHeaderSectionCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    var detailWeatherData: WeatherDataStruct? {
+    var detailWeatherData: WeatherAppData? {
         didSet {
             guard let data = detailWeatherData else { return }
-            self.locationNameLabel.text = data.locationName
-            self.currentTempLabel.text = "\(data.locationTemperature)°"
-            self.locationWeatherLabel.text = data.locationWeather
-            self.highAndLowTempLabel.text = "최고:\(data.locationHighestTemp)°  최저:\(data.locationLowestTemp)°"
+            self.locationNameLabel.text = data.city.name
+            self.currentTempLabel.text = "\(data.list[0].main.temp)°"
+            self.locationWeatherLabel.text = data.list[0].weather[0].weatherDescription
+            self.highAndLowTempLabel.text = "최고:\(data.list[0].main.temp_max)°  최저:\(data.list[0].main.temp_min)°"
         }
     }
     

@@ -14,7 +14,7 @@ class GetWeatherService {
     func makeRequest(cityName: String) -> URLRequest {
         let baseURL = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.baseURL) as? String ?? ""
         let apiKey = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.apiKey) as? String ?? ""
-        let url = URL(string: baseURL + "/data/2.5/forecast?q=\(cityName)&lang=kr&cnt=8&units=metric&appid=\(apiKey)")!
+        let url = URL(string: baseURL + "/data/2.5/forecast?q=\(cityName)&lang=kr&cnt=10&units=metric&appid=\(apiKey)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let header = ["Content-Type": "apllication/json"]

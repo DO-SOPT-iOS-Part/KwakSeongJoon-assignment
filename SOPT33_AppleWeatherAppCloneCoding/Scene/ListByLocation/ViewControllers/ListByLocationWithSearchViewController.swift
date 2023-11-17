@@ -18,7 +18,7 @@ final class ListByLocationWithSearchViewController: UIViewController {
     
     let viewtest = UIView()
 
-    private let locationArray: [String] = ["seoul", "daejeon", "cheonan", "jeju", "busan"]
+    private let locationArray: [String] = ["Seoul", "Daejeon", "Cheonan", "Jeju", "Busan"]
         
     private var filteredBySearchWeatherData: [WeatherAppData] = []
     
@@ -133,6 +133,10 @@ extension ListByLocationWithSearchViewController: UICollectionViewDataSource {
         
         let nextVC = LocationDetailWeatherViewController()
         nextVC.index = indexPath.section
+        nextVC.locationList = locationArray
+        nextVC.weatherApp = totalLocationWeatherData
+        let cityName = totalLocationWeatherData[indexPath.section].city.name
+        nextVC.selectedCityName = cityName
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -206,13 +210,14 @@ extension ListByLocationWithSearchViewController {
                     guard let response = try await GetWeatherService.shared.getWeatherData(cityName: city) else { return }
                     Task {
                         await appendEachWeatherData(response: response)
-                        locationListCollectionView.reloadData()
                     }
                 }
             } catch {
                 print(error)
             }
         }
+        locationListCollectionView.reloadData()
+
     }
     
     func appendEachWeatherData(response: WeatherAppData) async {

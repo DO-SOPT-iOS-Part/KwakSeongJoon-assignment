@@ -11,6 +11,8 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     var weatherData: WeatherDataStruct?
     
+    var weatherApp: WeatherAppData?
+    
     private let detailWeatherCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.showsHorizontalScrollIndicator = false
@@ -155,8 +157,8 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         case 0:
             return 1
         case 1:
-            guard let weatherData else { return 0}
-            return weatherData.detailWeatherByHour.count
+            guard let weatherApp else { return 0}
+            return weatherApp.list.count
         case 2:
             guard let weatherData else { return 0}
             return weatherData.tenDayWeather.count
@@ -176,7 +178,7 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
             switch indexPath.section {
             case 1:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier, for: indexPath) as? DetailCollectionWeatherByHourHeaderView else { return UICollectionReusableView()}
-                header.headerData = weatherData
+                header.headerData = weatherApp
                 return header
                 
             case 2:
@@ -200,7 +202,7 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         case 0:
          
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier, for: indexPath) as? DetailHeaderSectionCollectionViewCell else { return UICollectionViewCell()}
-                cell.detailWeatherData = weatherData
+                cell.detailWeatherData = weatherApp
                 cell.isHidden = false
                 return cell
             
@@ -209,7 +211,9 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailWeatherByHourSectionCollectionViewCell.identifier, for: indexPath) as? DetailWeatherByHourSectionCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.hourWeatherData = weatherData?.detailWeatherByHour[indexPath.row]
+            cell.index = IndexPath(item: indexPath.item, section: indexPath.section)
+            cell.hourWeatherData = weatherApp
+            cell.dummyData = weatherData?.detailWeatherByHour[indexPath.item]
             return cell
             
         case 2:

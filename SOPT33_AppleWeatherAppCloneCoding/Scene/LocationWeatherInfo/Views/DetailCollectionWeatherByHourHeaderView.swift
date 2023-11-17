@@ -11,10 +11,14 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
     
     static let identifier = "DetailCollectionWeatherByHourHeaderView"
     
-    var headerData: WeatherDataStruct? {
+    var headerData: WeatherAppData? {
         didSet {
             guard let data = headerData else { return }
-            hourWeatherDescriptionLabel.text = data.weatherDescription
+            
+            let time = data.city.timezone.components(separatedBy: [":"])
+            let timePlus = Int(time[0])! + 1
+            let timePPlus = Int(time[0])! + 6
+            hourWeatherDescriptionLabel.text = ("\(time[0])시 ~ \(timePlus)시에 강우 상태가,  \(timePPlus)시 경에 한 때는 폭설 상태가 예상됩니다.")
             
         }
     }
