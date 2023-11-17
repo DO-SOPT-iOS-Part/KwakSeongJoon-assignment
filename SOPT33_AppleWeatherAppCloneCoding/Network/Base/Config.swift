@@ -22,3 +22,20 @@ enum Config {
         return dict
     }()
 }
+
+extension Config {
+
+    static let baseURL: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.baseURL] as? String else {
+            fatalError("BASE_URL is not set in plist for this configuration")
+        }
+        return key
+    }()
+    
+    static let apiKey: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.apiKey] as? String else {
+            fatalError("APIKEY is not set in plist for this configuration")
+        }
+        return key
+    }()
+}

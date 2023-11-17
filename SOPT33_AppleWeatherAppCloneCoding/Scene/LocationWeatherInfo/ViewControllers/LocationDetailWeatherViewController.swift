@@ -87,7 +87,6 @@ final class LocationDetailWeatherViewController: UIViewController {
             
             
             locationVCList.append(customVC)
-            print(locationVCList)
         }
 
         
