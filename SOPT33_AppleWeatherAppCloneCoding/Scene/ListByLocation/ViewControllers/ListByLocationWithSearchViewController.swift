@@ -15,8 +15,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
             self.locationListCollectionView.reloadData()
         }
     }
-    
-    let viewtest = UIView()
 
     private let locationArray: [String] = ["Seoul", "Daejeon", "Cheonan", "Jeju", "Busan"]
         
@@ -216,8 +214,10 @@ extension ListByLocationWithSearchViewController {
                 print(error)
             }
         }
-        locationListCollectionView.reloadData()
-
+            
+            self.locationListCollectionView.reloadData()
+            
+        
     }
     
     func appendEachWeatherData(response: WeatherAppData) async {

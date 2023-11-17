@@ -79,7 +79,6 @@ final class LocationDetailWeatherViewController: UIViewController {
         }
 
         
-//        let firstVC = locationVCs[index]
         let firstVC = locationVCList[index]
         pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         
