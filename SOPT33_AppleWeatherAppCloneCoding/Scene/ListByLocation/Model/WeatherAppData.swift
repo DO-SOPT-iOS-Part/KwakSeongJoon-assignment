@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 struct WeatherAppData {
     let list: [ListApp]
@@ -21,7 +23,7 @@ struct MainApp {
 struct WeatherApp {
     let id: Int
     let weatherDescription: String
-    let icon: String
+    let icon: UIImage?
 }
 
 struct ListApp {

@@ -17,7 +17,7 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
             
             let time = data.city.timezone.components(separatedBy: [":"])
             let timePlus = Int(time[0])! + 1
-            let timePPlus = Int(time[0])! + 6
+            let timePPlus = Int(time[0])! + 3
             hourWeatherDescriptionLabel.text = ("\(time[0])시 ~ \(timePlus)시에 강우 상태가,  \(timePPlus)시 경에 한 때는 폭설 상태가 예상됩니다.")
             
         }
@@ -25,7 +25,6 @@ final class DetailCollectionWeatherByHourHeaderView: UICollectionReusableView {
     
     private let divideView: UIView = {
         let view = UIView()
-//        view.alpha = 0.5
         view.backgroundColor = .white
         return view
     }()

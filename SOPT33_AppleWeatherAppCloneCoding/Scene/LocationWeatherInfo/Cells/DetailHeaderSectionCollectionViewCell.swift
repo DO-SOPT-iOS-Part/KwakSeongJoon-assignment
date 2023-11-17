@@ -29,9 +29,9 @@ final class DetailHeaderSectionCollectionViewCell: UICollectionViewCell {
         didSet {
             guard let data = detailWeatherData else { return }
             self.locationNameLabel.text = data.city.name
-            self.currentTempLabel.text = "\(data.list[0].main.temp)°"
-            self.locationWeatherLabel.text = data.list[0].weather[0].weatherDescription
-            self.highAndLowTempLabel.text = "최고:\(data.list[0].main.temp_max)°  최저:\(data.list[0].main.temp_min)°"
+            self.currentTempLabel.text = "\(data.list[2].main.temp)°"
+            self.locationWeatherLabel.text = data.list[2].weather[0].weatherDescription
+            self.highAndLowTempLabel.text = "최고:\(data.list[2].main.temp_max)°  최저:\(data.list[2].main.temp_min)°"
         }
     }
     

@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F41F6C442B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C432B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift */; };
 		F41F6C492B033A8C0018EEC6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C482B033A8C0018EEC6 /* Config.swift */; };
 		F41F6C4B2B060D620018EEC6 /* DetailStickyHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C4A2B060D610018EEC6 /* DetailStickyHeaderCollectionViewCell.swift */; };
-		F41F6C4D2B061A8B0018EEC6 /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C4C2B061A8A0018EEC6 /* StickyHeaderView.swift */; };
 		F41F6C572B06EDA40018EEC6 /* WeatherDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C562B06EDA40018EEC6 /* WeatherDataDTO.swift */; };
 		F42AE87B2AEB7F0D00DD8391 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AE87A2AEB7F0D00DD8391 /* UIViewController+.swift */; };
 		F43488372AE77BA400AB4959 /* DetailWeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */; };
@@ -51,10 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F41F6C432B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWeatherInfoAppData.swift; sourceTree = "<group>"; };
 		F41F6C482B033A8C0018EEC6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F41F6C4A2B060D610018EEC6 /* DetailStickyHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStickyHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		F41F6C4C2B061A8A0018EEC6 /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		F41F6C562B06EDA40018EEC6 /* WeatherDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataDTO.swift; sourceTree = "<group>"; };
 		F42AE87A2AEB7F0D00DD8391 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherInfoViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +111,6 @@
 				F437E35A2AFCD6A60046AD83 /* DetailHourSectionBackgroundView.swift */,
 				F437E35E2AFDE16D0046AD83 /* DetailTenDaySectionCollectionBackGroundView.swift */,
 				F437E3602AFDE98B0046AD83 /* DetailTenDayWeatherSectionHeaderView.swift */,
-				F41F6C4C2B061A8A0018EEC6 /* StickyHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,7 +287,6 @@
 			children = (
 				F4F419D02AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift */,
 				F44F8AD62B020B9900850AAD /* WeatherAppData.swift */,
-				F41F6C432B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,7 +418,6 @@
 				F46C22AD2ADC6D8800AA798D /* UIFont+.swift in Sources */,
 				F437E35F2AFDE16D0046AD83 /* DetailTenDaySectionCollectionBackGroundView.swift in Sources */,
 				F4F419E22AE11A2400AB8526 /* LocationDetailWeatherViewController.swift in Sources */,
-				F41F6C4D2B061A8B0018EEC6 /* StickyHeaderView.swift in Sources */,
 				F437E3592AFB62C80046AD83 /* DetailCollectionWeatherByHourHeaderView.swift in Sources */,
 				F41F6C4B2B060D620018EEC6 /* DetailStickyHeaderCollectionViewCell.swift in Sources */,
 				F46C22BA2ADC838F00AA798D /* UIImage+.swift in Sources */,
@@ -433,7 +426,6 @@
 				F42AE87B2AEB7F0D00DD8391 /* UIViewController+.swift in Sources */,
 				F41F6C492B033A8C0018EEC6 /* Config.swift in Sources */,
 				F4F419D12AE10E2500AB8526 /* WeatherListByLocationInfoModel.swift in Sources */,
-				F41F6C442B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift in Sources */,
 				F437E3572AF94C0E0046AD83 /* DetailHeaderSectionCollectionViewCell.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
 				F41F6C572B06EDA40018EEC6 /* WeatherDataDTO.swift in Sources */,

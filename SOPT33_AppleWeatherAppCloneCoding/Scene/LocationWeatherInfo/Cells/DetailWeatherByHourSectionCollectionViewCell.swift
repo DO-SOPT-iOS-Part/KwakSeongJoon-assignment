@@ -31,23 +31,15 @@ class DetailWeatherByHourSectionCollectionViewCell: UICollectionViewCell {
     
     private var hourTempLabel = SFFontLabel(size: 22, weight: .medium)
     
-    var dummyData: WeatherInfoByHour? {
-        didSet {
-            guard let data = dummyData else { return }
-            self.weatherImage.image = data.weatherImage.weatherImage()
-
-        }
-    }
-    
-    
     var hourWeatherData: WeatherAppData? {
         didSet {
             guard let data = hourWeatherData else { return }
-            let split = data.list[index.item].dttxt.components(separatedBy: " ")
+            let split = data.list[index.item + 2].dttxt.components(separatedBy: " ")
             let secondSplit = split[1].components(separatedBy: [":"] )
-            let hour = Int(secondSplit[0])! + 8
+            let hour = Int(secondSplit[0])!
             self.hourLabel.text = "\(hour) 시"
-            self.hourTempLabel.text = "\(data.list[index.item].main.temp)°"
+            self.hourTempLabel.text = "\(data.list[index.item + 2].main.temp)°"
+            self.weatherImage.image = data.list[index.item + 2].weather[0].icon
         }
     }
     

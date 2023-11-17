@@ -158,7 +158,7 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
             return 1
         case 1:
             guard let weatherApp else { return 0}
-            return weatherApp.list.count
+            return weatherApp.list.count - 2
         case 2:
             guard let weatherData else { return 0}
             return weatherData.tenDayWeather.count
@@ -213,7 +213,6 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
             
             cell.index = IndexPath(item: indexPath.item, section: indexPath.section)
             cell.hourWeatherData = weatherApp
-            cell.dummyData = weatherData?.detailWeatherByHour[indexPath.item]
             return cell
             
         case 2:
