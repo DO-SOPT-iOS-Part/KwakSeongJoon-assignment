@@ -59,7 +59,6 @@ final class ListByLocationWithSearchViewController: UIViewController {
         setCollectionView()
         
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

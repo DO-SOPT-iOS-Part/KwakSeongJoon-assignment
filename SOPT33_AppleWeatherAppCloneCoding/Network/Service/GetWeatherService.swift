@@ -15,7 +15,10 @@ class GetWeatherService {
         do{
             let request = try NetworkRequest(path: "/data/2.5/forecast", httpMethod: .get).makeURLRequest(cityName: cityName)
             
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw NetworkError.responseError
+            }
             return parseWeatherData(data: data)
         }
         catch {
