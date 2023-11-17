@@ -17,18 +17,7 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     var index: Int = 0
     
-//    private let myLocationVC = DetailWeatherInfoViewController()
-//    
-//    private let mokdongVC = DetailWeatherInfoViewController()
-//    
-//    private let incheonVC = DetailWeatherInfoViewController()
-//    
-//    private let busanVC = DetailWeatherInfoViewController()
-//    
-//    private lazy var locationVCs: [UIViewController] = {
-//        return  [myLocationVC, mokdongVC, incheonVC, busanVC]
-//    }()
-    
+
     var locationList: [String] = []
     
     private lazy var locationVCList: [UIViewController] = []
@@ -110,13 +99,7 @@ final class LocationDetailWeatherViewController: UIViewController {
         
     }
     
-//    private func setData() {
-//        myLocationVC.weatherData = weatherData[0]
-//        mokdongVC.weatherData = weatherData[1]
-//        incheonVC.weatherData = weatherData[2]
-//        busanVC.weatherData = weatherData[3]
-//    }
-    
+
     private func setToolBar() {
         mapButton.tintColor = .white
         goToListVCButton.tintColor = .white
