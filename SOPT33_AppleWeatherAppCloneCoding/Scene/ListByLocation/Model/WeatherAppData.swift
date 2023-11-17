@@ -8,10 +8,8 @@
 import Foundation
 
 struct WeatherAppData {
-    let weather: [WeatherApp]
-    let main: MainApp
-    let name: String
-    let timeZone: String
+    let list: [ListApp]
+    let city: CityApp
 }
 
 struct MainApp {
@@ -22,7 +20,18 @@ struct MainApp {
 
 struct WeatherApp {
     let id: Int
-    let description: String
+    let weatherDescription: String
     let icon: String
+}
+
+struct ListApp {
+    let main: MainApp
+    let weather: [WeatherApp]
+    let dttxt: String
+}
+
+struct CityApp {
+    let name: String
+    let timezone: String
 }
 

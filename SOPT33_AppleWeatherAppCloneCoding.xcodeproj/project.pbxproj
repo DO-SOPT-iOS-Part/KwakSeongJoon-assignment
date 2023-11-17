@@ -11,6 +11,7 @@
 		F41F6C492B033A8C0018EEC6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C482B033A8C0018EEC6 /* Config.swift */; };
 		F41F6C4B2B060D620018EEC6 /* DetailStickyHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C4A2B060D610018EEC6 /* DetailStickyHeaderCollectionViewCell.swift */; };
 		F41F6C4D2B061A8B0018EEC6 /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C4C2B061A8A0018EEC6 /* StickyHeaderView.swift */; };
+		F41F6C572B06EDA40018EEC6 /* WeatherDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F6C562B06EDA40018EEC6 /* WeatherDataDTO.swift */; };
 		F42AE87B2AEB7F0D00DD8391 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AE87A2AEB7F0D00DD8391 /* UIViewController+.swift */; };
 		F43488372AE77BA400AB4959 /* DetailWeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */; };
 		F434883C2AE8248A00AB4959 /* WeatherInfoByHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434883B2AE8248A00AB4959 /* WeatherInfoByHourView.swift */; };
@@ -21,7 +22,6 @@
 		F437E35D2AFCE58C0046AD83 /* DetailTenDayWeatherSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437E35C2AFCE58C0046AD83 /* DetailTenDayWeatherSectionCollectionViewCell.swift */; };
 		F437E35F2AFDE16D0046AD83 /* DetailTenDaySectionCollectionBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437E35E2AFDE16D0046AD83 /* DetailTenDaySectionCollectionBackGroundView.swift */; };
 		F437E3612AFDE98B0046AD83 /* DetailTenDayWeatherSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437E3602AFDE98B0046AD83 /* DetailTenDayWeatherSectionHeaderView.swift */; };
-		F44F8AD02B01FCF900850AAD /* WeatherDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44F8ACF2B01FCF900850AAD /* WeatherDataDTO.swift */; };
 		F44F8AD32B02039A00850AAD /* GetWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44F8AD22B02039A00850AAD /* GetWeatherService.swift */; };
 		F44F8AD52B02075900850AAD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44F8AD42B02075900850AAD /* NetworkError.swift */; };
 		F44F8AD72B020B9900850AAD /* WeatherAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44F8AD62B020B9900850AAD /* WeatherAppData.swift */; };
@@ -55,6 +55,7 @@
 		F41F6C482B033A8C0018EEC6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F41F6C4A2B060D610018EEC6 /* DetailStickyHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStickyHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		F41F6C4C2B061A8A0018EEC6 /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
+		F41F6C562B06EDA40018EEC6 /* WeatherDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataDTO.swift; sourceTree = "<group>"; };
 		F42AE87A2AEB7F0D00DD8391 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		F43488362AE77BA400AB4959 /* DetailWeatherInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherInfoViewController.swift; sourceTree = "<group>"; };
 		F434883B2AE8248A00AB4959 /* WeatherInfoByHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoByHourView.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		F437E35C2AFCE58C0046AD83 /* DetailTenDayWeatherSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTenDayWeatherSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		F437E35E2AFDE16D0046AD83 /* DetailTenDaySectionCollectionBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTenDaySectionCollectionBackGroundView.swift; sourceTree = "<group>"; };
 		F437E3602AFDE98B0046AD83 /* DetailTenDayWeatherSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTenDayWeatherSectionHeaderView.swift; sourceTree = "<group>"; };
-		F44F8ACF2B01FCF900850AAD /* WeatherDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataDTO.swift; sourceTree = "<group>"; };
 		F44F8AD12B02019700850AAD /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		F44F8AD22B02039A00850AAD /* GetWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeatherService.swift; sourceTree = "<group>"; };
 		F44F8AD42B02075900850AAD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		F437E37A2B01F3E70046AD83 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				F44F8ACF2B01FCF900850AAD /* WeatherDataDTO.swift */,
+				F41F6C562B06EDA40018EEC6 /* WeatherDataDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -436,11 +436,11 @@
 				F41F6C442B028ABB0018EEC6 /* TotalWeatherInfoAppData.swift in Sources */,
 				F437E3572AF94C0E0046AD83 /* DetailHeaderSectionCollectionViewCell.swift in Sources */,
 				F46C228C2ADC5C2500AA798D /* AppDelegate.swift in Sources */,
+				F41F6C572B06EDA40018EEC6 /* WeatherDataDTO.swift in Sources */,
 				F4D40B5D2AF2080F00A9AB93 /* LocationListCollectionViewCell.swift in Sources */,
 				F46C228E2ADC5C2500AA798D /* SceneDelegate.swift in Sources */,
 				F437E35B2AFCD6A60046AD83 /* DetailHourSectionBackgroundView.swift in Sources */,
 				F4F419DB2AE110D200AB8526 /* UIStackView+.swift in Sources */,
-				F44F8AD02B01FCF900850AAD /* WeatherDataDTO.swift in Sources */,
 				F437E35D2AFCE58C0046AD83 /* DetailTenDayWeatherSectionCollectionViewCell.swift in Sources */,
 				F437E3612AFDE98B0046AD83 /* DetailTenDayWeatherSectionHeaderView.swift in Sources */,
 				F46C22B52ADC80C300AA798D /* UIView+.swift in Sources */,

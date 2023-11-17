@@ -190,7 +190,7 @@ extension ListByLocationWithSearchViewController: UISearchResultsUpdating {
         
         guard let searchingText = searchController.searchBar.searchTextField.text else { return }
         
-        filteredBySearchWeatherData = totalLocationWeatherData.filter { $0.name.contains(searchingText)}
+        filteredBySearchWeatherData = totalLocationWeatherData.filter { $0.city.name.contains(searchingText)}
         
         self.locationListCollectionView.reloadData()
       

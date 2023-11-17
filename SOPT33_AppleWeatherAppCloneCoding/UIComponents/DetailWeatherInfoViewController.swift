@@ -11,8 +11,6 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     var weatherData: WeatherDataStruct?
     
-    
-    
     private let detailWeatherCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.showsHorizontalScrollIndicator = false
@@ -20,14 +18,6 @@ final class DetailWeatherInfoViewController: UIViewController {
         collectionView.backgroundColor = .clear
         
         return collectionView
-    }()
-    
-    var isSticky: Bool = false
-    
-    let stickyHeader: StickyHeaderView = {
-        let view = StickyHeaderView()
-        view.isHidden = true
-        return view
     }()
     
     private let backgroundImage = UIImageView(image: ImageLiterals.detailView.backgroundImage)
@@ -39,7 +29,6 @@ final class DetailWeatherInfoViewController: UIViewController {
     private let weatherInfoByHourView = WeatherInfoByHourView()
     
     private var shouldHideSection: Bool = false
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +46,8 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     private func setLayout() {
         
-        self.view.addSubviews(stickyHeader, backgroundImage, detailWeatherCollectionView)
+        self.view.addSubviews (backgroundImage, detailWeatherCollectionView)
         self.view.sendSubviewToBack(backgroundImage)
-        
-        stickyHeader.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.height.equalTo(150)
-            $0.width.equalToSuperview()
-        }
         
         backgroundImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -186,22 +169,6 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         return 3
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let scrollOffset = detailWeatherCollectionView.contentOffset.y
-        
-        if scrollOffset > 222 {
-            stickyHeader.isHidden = false
-            
-        } else {
-            stickyHeader.isHidden = true
-        }
-        
-        
-    }
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
@@ -231,17 +198,12 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         
         switch indexPath.section {
         case 0:
-            if stickyHeader.isHidden == true {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier, for: indexPath) as? DetailHeaderSectionCollectionViewCell else { return UICollectionViewCell()}
-                cell.detailWeatherData = weatherData
-                
-                return cell
-            } else {
+         
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier, for: indexPath) as? DetailHeaderSectionCollectionViewCell else { return UICollectionViewCell()}
                 cell.detailWeatherData = weatherData
                 cell.isHidden = false
                 return cell
-            }
+            
             
             
         case 1:

@@ -17,6 +17,7 @@ class LocationListCollectionViewCell: UICollectionViewCell {
     private let temperatureLabel = SFFontLabel(size: 52, weight: .light)
     private let highestTempLabel = SFFontLabel(size: 15, weight: .medium)
     private let lowestTempLabel = SFFontLabel(size: 15, weight: .medium)
+        
     
     private enum Size {
         static let buttonHeight: CGFloat = 117 /  335
@@ -25,12 +26,12 @@ class LocationListCollectionViewCell: UICollectionViewCell {
     var cellWeatherData: WeatherAppData? {
         didSet {
             guard let data = cellWeatherData else { return }
-            locationLabel.text = data.name
-            timeLabel.text = data.timeZone
-            weatherInfoLabel.text = data.weather[0].description
-            temperatureLabel.text = "\(data.main.temp)°"
-            highestTempLabel.text = "최고: \(data.main.temp_max)°"
-            lowestTempLabel.text = "최저: \(data.main.temp_min)°"
+            locationLabel.text = data.city.name
+            timeLabel.text = data.city.timezone
+            weatherInfoLabel.text = data.list[2].weather[0].weatherDescription
+            temperatureLabel.text = "\(data.list[2].main.temp)°"
+            highestTempLabel.text = "최고: \(data.list[2].main.temp_max)°"
+            lowestTempLabel.text = "최저: \(data.list[2].main.temp_min)°"
         }
     }
     
