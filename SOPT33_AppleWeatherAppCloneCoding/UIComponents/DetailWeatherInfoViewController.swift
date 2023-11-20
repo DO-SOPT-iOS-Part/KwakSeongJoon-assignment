@@ -11,6 +11,8 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     var weatherData: WeatherDataStruct?
     
+    var weatherApp: WeatherAppData?
+    
     private let detailWeatherCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.showsHorizontalScrollIndicator = false
@@ -28,7 +30,7 @@ final class DetailWeatherInfoViewController: UIViewController {
     
     private let weatherInfoByHourView = WeatherInfoByHourView()
     
-    
+    private var shouldHideSection: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +42,14 @@ final class DetailWeatherInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+
     }
     
     private func setLayout() {
         
-        self.view.addSubviews(backgroundImage, detailWeatherCollectionView)
+        self.view.addSubviews (backgroundImage, detailWeatherCollectionView)
         self.view.sendSubviewToBack(backgroundImage)
-        
-        
         
         backgroundImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -72,20 +73,23 @@ final class DetailWeatherInfoViewController: UIViewController {
         detailWeatherCollectionView.register(DetailTenDayWeatherSectionCollectionViewCell.self, forCellWithReuseIdentifier: DetailTenDayWeatherSectionCollectionViewCell.identifier)
         detailWeatherCollectionView.register(DetailTenDayWeatherSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailTenDayWeatherSectionHeaderView.identifier)
         
+        detailWeatherCollectionView.register(DetailStickyHeaderCollectionViewCell.self, forCellWithReuseIdentifier: DetailStickyHeaderCollectionViewCell.identifier)
+        
         
     }
     
     static func createLayout() -> UICollectionViewLayout {
       
-            
             let layout = UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
                 
                 switch sectionNumber {
                 case 0:
+                    // 기존 코드
                     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(280)))
                     let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1.5)), subitems: [item])
                     let section = NSCollectionLayoutSection(group: group)
                     section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 44, trailing: 0)
+                    
                     return section
                     
                 case 1:
@@ -153,8 +157,8 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         case 0:
             return 1
         case 1:
-            guard let weatherData else { return 0}
-            return weatherData.detailWeatherByHour.count
+            guard let weatherApp else { return 0}
+            return weatherApp.list.count - 2
         case 2:
             guard let weatherData else { return 0}
             return weatherData.tenDayWeather.count
@@ -167,13 +171,14 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
         return 3
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             switch indexPath.section {
             case 1:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionWeatherByHourHeaderView.identifier, for: indexPath) as? DetailCollectionWeatherByHourHeaderView else { return UICollectionReusableView()}
-                header.headerData = weatherData
+                header.headerData = weatherApp
                 return header
                 
             case 2:
@@ -185,29 +190,29 @@ extension DetailWeatherInfoViewController: UICollectionViewDataSource {
 
             }
             
-            
-            
-            
-            
-            
         default:
             return UICollectionReusableView()
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier, for: indexPath) as? DetailHeaderSectionCollectionViewCell else { return UICollectionViewCell()}
+         
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailHeaderSectionCollectionViewCell.identifier, for: indexPath) as? DetailHeaderSectionCollectionViewCell else { return UICollectionViewCell()}
+                cell.detailWeatherData = weatherApp
+                cell.isHidden = false
+                return cell
             
-            cell.detailWeatherData = weatherData
-            return cell
+            
             
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailWeatherByHourSectionCollectionViewCell.identifier, for: indexPath) as? DetailWeatherByHourSectionCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.hourWeatherData = weatherData?.detailWeatherByHour[indexPath.row]
+            cell.index = IndexPath(item: indexPath.item, section: indexPath.section)
+            cell.hourWeatherData = weatherApp
             return cell
             
         case 2:

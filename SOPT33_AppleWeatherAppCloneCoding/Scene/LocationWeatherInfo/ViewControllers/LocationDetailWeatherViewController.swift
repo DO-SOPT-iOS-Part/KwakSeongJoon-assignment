@@ -11,19 +11,16 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     private let weatherData = WeatherDataStruct.dummy()
     
+    var selectedCityName: String = ""
+    
+    var weatherApp: [WeatherAppData]?
+    
     var index: Int = 0
     
-    private let myLocationVC = DetailWeatherInfoViewController()
+
+    var locationList: [String] = []
     
-    private let mokdongVC = DetailWeatherInfoViewController()
-    
-    private let incheonVC = DetailWeatherInfoViewController()
-    
-    private let busanVC = DetailWeatherInfoViewController()
-    
-    private lazy var locationVCs: [UIViewController] = {
-        return  [myLocationVC, mokdongVC, incheonVC, busanVC]
-    }()
+    private lazy var locationVCList: [UIViewController] = []
     
     private lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -32,7 +29,8 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = locationVCs.count
+//        pageControl.numberOfPages = locationVCs.count
+                pageControl.numberOfPages = locationVCList.count
         pageControl.currentPage = index
         pageControl.setIndicatorImage(ImageLiterals.detailView.GPSImage, forPage: 0)
         return pageControl
@@ -46,11 +44,17 @@ final class LocationDetailWeatherViewController: UIViewController {
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setData()
+//        setData()
         setPageViewController()
         setLayout()
         setToolBar()
@@ -62,7 +66,20 @@ final class LocationDetailWeatherViewController: UIViewController {
         pageViewController.dataSource = self
         pageViewController.delegate = self
         
-        let firstVC = locationVCs[index]
+        for name in 0 ... locationList.count - 1 {
+            guard let weatherApp else { return }
+            let customVC = DetailWeatherInfoViewController()
+            customVC.title = "\(name)ViewController "
+            
+            customVC.weatherApp = weatherApp[name]
+            customVC.weatherData = weatherData[0]
+            
+            
+            locationVCList.append(customVC)
+        }
+
+        
+        let firstVC = locationVCList[index]
         pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         
         
@@ -81,13 +98,7 @@ final class LocationDetailWeatherViewController: UIViewController {
         
     }
     
-    private func setData() {
-        myLocationVC.weatherData = weatherData[0]
-        mokdongVC.weatherData = weatherData[1]
-        incheonVC.weatherData = weatherData[2]
-        busanVC.weatherData = weatherData[3]
-    }
-    
+
     private func setToolBar() {
         mapButton.tintColor = .white
         goToListVCButton.tintColor = .white
@@ -122,19 +133,19 @@ final class LocationDetailWeatherViewController: UIViewController {
 extension LocationDetailWeatherViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let index = locationVCs.firstIndex(of: viewController) else { return nil }
+        guard let index = locationVCList.firstIndex(of: viewController) else { return nil }
         let previousIndex = index - 1
         if previousIndex >= 0 {
-            return locationVCs[previousIndex]
+            return locationVCList[previousIndex]
         }
         return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = locationVCs.firstIndex(of: viewController) else { return nil }
+        guard let index = locationVCList.firstIndex(of: viewController) else { return nil }
         let nextIndex = index + 1
-        if nextIndex < locationVCs.count {
-            return locationVCs[nextIndex]
+        if nextIndex < locationVCList.count {
+            return locationVCList[nextIndex]
         }
         return nil
     }
@@ -143,7 +154,7 @@ extension LocationDetailWeatherViewController: UIPageViewControllerDataSource, U
         
         if completed {
             if let currentViewController = pageViewController.viewControllers?.first,
-               let index = locationVCs.firstIndex(of: currentViewController) {
+               let index = locationVCList.firstIndex(of: currentViewController) {
                 pageControl.currentPage = index
             }
         }

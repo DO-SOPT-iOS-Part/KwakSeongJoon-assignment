@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  SOPT33_AppleWeatherAppCloneCoding
+//
+//  Created by 곽성준 on 11/13/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = https:/$()/api.openweathermap.org
+API_KEY = f776f18d74bb51bb9b1480b3b89a7dc1

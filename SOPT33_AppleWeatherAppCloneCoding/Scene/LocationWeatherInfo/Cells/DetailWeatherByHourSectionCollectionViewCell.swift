@@ -11,6 +11,8 @@ class DetailWeatherByHourSectionCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "detailWeatherSectionZeroCollectionViewCell"
     
+    var index: IndexPath = IndexPath(item: 0, section: 0)
+    
     private let hourWeatherStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .center
@@ -29,12 +31,15 @@ class DetailWeatherByHourSectionCollectionViewCell: UICollectionViewCell {
     
     private var hourTempLabel = SFFontLabel(size: 22, weight: .medium)
     
-    var hourWeatherData: WeatherInfoByHour? {
+    var hourWeatherData: WeatherAppData? {
         didSet {
             guard let data = hourWeatherData else { return }
-            self.hourLabel.text = data.time
-            self.weatherImage.image = data.weatherImage.weatherImage()
-            self.hourTempLabel.text = "\(data.tempByHour)°"
+            let split = data.list[index.item + 2].dttxt.components(separatedBy: " ")
+            let secondSplit = split[1].components(separatedBy: [":"] )
+            let hour = Int(secondSplit[0])!
+            self.hourLabel.text = "\(hour) 시"
+            self.hourTempLabel.text = "\(data.list[index.item + 2].main.temp)°"
+            self.weatherImage.image = data.list[index.item + 2].weather[0].icon
         }
     }
     

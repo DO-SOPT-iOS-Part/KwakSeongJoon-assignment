@@ -47,7 +47,6 @@ final class DetailTenDayWeatherSectionCollectionViewCell: UICollectionViewCell {
             self.dayLabel.text = data.day
             self.dayWeatherImage.image = data.weatherImage.weatherImage()
             self.lowTempLabel.text = "\(data.lowTemp)°"
-//            self.progressImage.image = data.weatherProgressImage.weatherImage()
             self.highTempLabel.text = "\(data.highTemp)°"
             
             guard let rain = data.rainyPercent else { return }
